@@ -20,5 +20,6 @@ public:
     std::string GetCustomerCNP()const;
     std::string GetCustomerIDSeries()const;
     std::string GetCustomerIDCardNumber()const;
+    IdentificationInfos(const std::string, const std::string, const std::string, const std::string, const std::string, const std::string, const std::string);
 };
 

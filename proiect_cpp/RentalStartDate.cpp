@@ -11,11 +11,9 @@ RentalStartDate::RentalStartDate(const std::string startDay, const std::string s
 
 
 RentalStartDate::RentalStartDate()
-{
-	m_startDay = "\0";
-	m_startMonth = "\0";
-	m_startMonth = "\0";
-}
+	:m_startDay{"\0"}, m_startMonth{"\0"}, m_startYear{"\0"}
+{}
+
 
 // Getters
 

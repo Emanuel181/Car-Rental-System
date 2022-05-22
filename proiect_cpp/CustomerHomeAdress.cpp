@@ -1,5 +1,6 @@
 #include "CustomerHomeAdress.h"
 
+
 CustomerHomeAdress::CustomerHomeAdress(const std::string customerCountry, const std::string customerCity, const std::string customerPostalCode, const std::string customerStreet, const std::string customerStreetNumber)
 {
 	m_customerCountry = customerCountry;
@@ -11,13 +12,10 @@ CustomerHomeAdress::CustomerHomeAdress(const std::string customerCountry, const 
 
 
 CustomerHomeAdress::CustomerHomeAdress()
-{
-	m_customerCountry = "\0";
-	m_customerCity = "\0";
-	m_customerPostalCode = "\0";
-	m_customerStreet = "\0";
-	m_customerStreetNumber = "\0";
-}
+	:m_customerCountry{"\0"}, m_customerCity{"\0"}, m_customerPostalCode{"\0"},
+	m_customerStreet{"\0"}, m_customerStreetNumber{"\0"}
+{}
+
 
 // Getters
 

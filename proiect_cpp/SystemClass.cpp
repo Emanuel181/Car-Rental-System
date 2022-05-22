@@ -1,5 +1,6 @@
 #include "SystemClass.h"
 
+
 // Getters
 
 std::string SystemClass::GetNameOfHeadCompany() { return m_nameOfHeadCompany; }

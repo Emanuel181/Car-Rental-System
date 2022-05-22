@@ -5,17 +5,14 @@ RentalEndDate::RentalEndDate(const std::string endDay, const std::string endMont
 {
 	m_endDay = endDay;
 	m_endMonth = endMonth;
-	m_endDay = endDay;
+	m_endDay = endYear;
 	m_EndTime = endTime;
 }
 
 
 RentalEndDate::RentalEndDate()
-{
-	m_endDay = "\0";
-	m_endMonth = "\0";
-	m_endDay = "\0";
-}
+	:m_endDay{"\0"}, m_endMonth{"\0"}, m_endYear{"\0"}
+{}
 
 
 // Getters

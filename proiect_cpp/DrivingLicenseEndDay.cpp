@@ -10,13 +10,12 @@ DrivingLicenseEndDay::DrivingLicenseEndDay(const std::string endDay, const std::
 
 
 DrivingLicenseEndDay::DrivingLicenseEndDay()
-{
-	m_endDay = "\0";
-	m_endMonth = "\0";
-	m_endYear = "\0";
-}
+	:m_endDay{"\0"}, m_endMonth{"\0"}, m_endYear{"\0"}
+{}
+
 
 // Getters
+
 
 std::string DrivingLicenseEndDay::GetEndDay()const { return m_endDay; }
 

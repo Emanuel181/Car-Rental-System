@@ -1,5 +1,6 @@
 #include "DateOfBirth.h"
 
+
 DateOfBirth::DateOfBirth(const std::string customerBirthDay, const std::string customerBirthMonth, const std::string customerBirthYear)
 {
 	m_customerBirthDay = customerBirthDay;
@@ -8,11 +9,9 @@ DateOfBirth::DateOfBirth(const std::string customerBirthDay, const std::string c
 }
 
 DateOfBirth::DateOfBirth()
-{
-	m_customerBirthDay = "\0";
-	m_customerBirthMonth = "\0";
-	m_customerBirthYear = "\0";
-}
+	: m_customerBirthDay{"\0"}, m_customerBirthMonth{"\0"},
+	m_customerBirthYear{"\0"}
+{}
 
 // Getters
 

@@ -9,10 +9,8 @@ StartTime::StartTime(const std::string startHour, const std::string startMinutes
 
 
 StartTime::StartTime()
-{
-	m_startHour = "8";
-	m_startMinutes = "0";
-}
+	:m_startHour{"\0"}, m_startMinutes{"\0"}
+{}
 
 
 // Getters

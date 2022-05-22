@@ -9,10 +9,9 @@ EndTime::EndTime(const std::string endHour, const std::string endMinutes)
  
 
 EndTime::EndTime()
-{
-	m_endHour = "17";
-	m_endMinutes = "0";
-}
+	:m_endHour{"17"}, m_endMinutes{"0"}
+{}
+
 
 // Getters
 

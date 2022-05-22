@@ -10,9 +10,8 @@ DrivingLicense::DrivingLicense(DrivingLicenseStartDay drivingLicenseStartDay, Dr
 
 
 DrivingLicense::DrivingLicense()
-{
-	m_isAbleToDrive = "pending";
-}
+	: m_isAbleToDrive{"pending"}
+{}
 
 
 // Getters

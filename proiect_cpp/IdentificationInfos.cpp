@@ -1,5 +1,18 @@
 #include "IdentificationInfos.h"
 
+
+IdentificationInfos::IdentificationInfos(const std::string customerFirstName, const std::string customerLasttName, const std::string customerEmail, const std::string customerTelephone, const std::string customerCNP, const std::string customerIDSeries, const std::string customerIDCardNumber)
+{
+    m_customerFirstName = customerFirstName;
+    m_customerLastName = customerLasttName;
+    m_customerEmail = customerEmail;
+    m_customerTelephone = customerTelephone;
+    m_customerCNP = customerCNP;
+    m_customerIDSeries = customerIDSeries;
+    m_customerIDCardNumber = customerIDCardNumber;
+}
+
+
 // Getters
 
 

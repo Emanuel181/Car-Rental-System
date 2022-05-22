@@ -23,17 +23,14 @@ double CompanyBranches::GetBranchMark()const { return m_branchMark; }
 
 std::vector <Customer> CompanyBranches::GetBranchCustomers()const { return m_branchCustomers; }
 
-LocationAddress CompanyBranches::GetLocationAddress() const {
-	return m_locationAddress;
-}
 
-std::vector <Car> CompanyBranches::GetBranchCars() const {
-	return m_branchCars;
-}
+LocationAddress CompanyBranches::GetLocationAddress() const {return m_locationAddress;}
 
-ContactClass CompanyBranches::GetContactClass() const {
-	return m_contactClass;
-}
+
+std::vector <Car> CompanyBranches::GetBranchCars() const {return m_branchCars;}
+
+
+ContactClass CompanyBranches::GetContactClass() const {return m_contactClass;}
 
 //-----------------------------------------------------------------------------------------------
 

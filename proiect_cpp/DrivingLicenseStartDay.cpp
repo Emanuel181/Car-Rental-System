@@ -10,11 +10,8 @@ DrivingLicenseStartDay::DrivingLicenseStartDay(const std::string startDay, const
 
 
 DrivingLicenseStartDay::DrivingLicenseStartDay()
-{
-	m_startDay = "\0";
-	m_startMonth = "\0";
-	m_startYear = "\0";
-}
+	:m_startDay{"\0"}, m_startMonth{"\0"}, m_startYear{"\0"}
+{}
 
 
 // Getters
