@@ -11,6 +11,8 @@ private:
     std::string m_endYear;
     EndTime m_EndTime;
 public:
+    RentalEndDate(const std::string, const std::string, const std::string, EndTime);
+    RentalEndDate();
     std::string GetRentalEndDay()const;
     std::string GetRentalEndMonth()const;
     std::string GetRentalEndYear()const;

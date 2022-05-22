@@ -5,12 +5,14 @@ class LocationAddress {
 
 private:
 	std::string m_streetName;
-	int m_streetNumber;
-	int m_streetPostalCode;
+	std::string m_streetNumber;
+	std::string m_streetPostalCode;
 
 public:
+	LocationAddress(const std::string, const std::string, const std::string);
+	LocationAddress();
 	std::string GetStreetName() const;
-	int GetStreetNumber() const;
-	int GetStreetPostalCode() const;
+	std::string GetStreetNumber() const;
+	std::string GetStreetPostalCode() const;
 
 };

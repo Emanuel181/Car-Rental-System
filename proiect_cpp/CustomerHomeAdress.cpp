@@ -1,10 +1,28 @@
 #include "CustomerHomeAdress.h"
 
+CustomerHomeAdress::CustomerHomeAdress(const std::string customerCountry, const std::string customerCity, const std::string customerPostalCode, const std::string customerStreet, const std::string customerStreetNumber)
+{
+	m_customerCountry = customerCountry;
+	m_customerCity = customerCity;
+	m_customerPostalCode = customerPostalCode;
+	m_customerStreet = customerStreet;
+	m_customerStreetNumber = customerStreetNumber;
+}
+
+
+CustomerHomeAdress::CustomerHomeAdress()
+{
+	m_customerCountry = "\0";
+	m_customerCity = "\0";
+	m_customerPostalCode = "\0";
+	m_customerStreet = "\0";
+	m_customerStreetNumber = "\0";
+}
 
 // Getters
 
 
-std::string CustomerHomeAdress::GetCustomerCountry()const { return m_costomerCountry; }
+std::string CustomerHomeAdress::GetCustomerCountry()const { return m_customerCountry; }
 
 
 std::string CustomerHomeAdress::GetCustomerCity()const { return m_customerCity; }

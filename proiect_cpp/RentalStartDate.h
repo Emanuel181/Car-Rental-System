@@ -1,6 +1,7 @@
 #pragma once
 #include "StartTime.h"
 
+
 class RentalStartDate
 {
 private:
@@ -9,6 +10,8 @@ private:
     std::string m_startYear;
     StartTime m_startTime;
 public:
+    RentalStartDate(const std::string, const std::string, const std::string, StartTime);
+    RentalStartDate();
     std::string GetStartDay()const;
     std::string GetStartMonth()const;
     std::string GetStartYear()const;

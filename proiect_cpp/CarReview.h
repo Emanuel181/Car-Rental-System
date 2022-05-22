@@ -9,9 +9,11 @@ private:
 	/*
 	awful/ good/ very good
 	*/
-	std::string review;
+	std::string m_review;
 
 public:
+	CarReview(double, double, double, double, double, const std::string);
+	CarReview();
 	double GetCarValue() const;
 	double GetCarCleanliness() const;
 	double GetCarComfort() const;

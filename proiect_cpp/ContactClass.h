@@ -9,6 +9,8 @@ private:
 	std::string m_managerName;
 
 public:
+	ContactClass(const std::string, const std::string, const std::string);
+	ContactClass();
 	std::string GetPhoneNumber() const;
 	std::string GetEmail() const;
 	std::string GetManagerName() const;
