@@ -1,5 +1,8 @@
 #pragma once
 #include "Customer.h"
+#include "LocationAddress.h"
+#include "ContactClass.h"
+#include "Car.h"
 
 
 class CompanyBranches
@@ -12,6 +15,9 @@ private:
     unsigned long long m_numberOfCarsAvaible;
     double m_branchMark;
     std::vector <Customer> m_branchCustomers;
+    LocationAddress m_locationAddress;
+    std::vector <Car> m_branchCars;
+    ContactClass m_contactClass;
 public:
     std::string GetBranchName()const;
     std::string GetCountryName()const;
@@ -20,5 +26,8 @@ public:
     unsigned long long GetNumberOfCarsAvaible()const;
     double GetBranchMark()const;
     std::vector <Customer> GetBranchCustomers()const;
+    LocationAddress GetLocationAddress() const;
+    std::vector <Car> GetBranchCars() const;
+    ContactClass GetContactClass() const;
 };
 
