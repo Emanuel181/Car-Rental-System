@@ -139,7 +139,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CompanyBranches.cpp" />
+    <ClCompile Include="Customer.cpp" />
+    <ClCompile Include="CustomerHomeAdress.cpp" />
+    <ClCompile Include="DateOfBirth.cpp" />
+    <ClCompile Include="DrivingLicense.cpp" />
+    <ClCompile Include="DrivingLicenseEndDay.cpp" />
+    <ClCompile Include="DrivingLicenseStartDay.cpp" />
+    <ClCompile Include="EndTime.cpp" />
+    <ClCompile Include="IdentificationInfos.cpp" />
+    <ClCompile Include="RentalEndDate.cpp" />
+    <ClCompile Include="RentalSchedule.cpp" />
+    <ClCompile Include="RentalStartDate.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="StartTime.cpp" />
+    <ClCompile Include="SystemClass.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CompanyBranches.h" />
+    <ClInclude Include="Customer.h" />
+    <ClInclude Include="CustomerHomeAdress.h" />
+    <ClInclude Include="DateOfBirth.h" />
+    <ClInclude Include="DrivingLicense.h" />
+    <ClInclude Include="DrivingLicenseEndDay.h" />
+    <ClInclude Include="DrivingLicenseStartDay.h" />
+    <ClInclude Include="EndTime.h" />
+    <ClInclude Include="IdentificationInfos.h" />
+    <ClInclude Include="RentalEndDate.h" />
+    <ClInclude Include="RentalSchedule.h" />
+    <ClInclude Include="RentalStartDate.h" />
+    <ClInclude Include="StartTime.h" />
+    <ClInclude Include="SystemClass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
