@@ -156,6 +156,7 @@
     <ClCompile Include="SystemClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClientOptions.h" />
     <ClInclude Include="CompanyBranches.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="CustomerHomeAdress.h" />
@@ -164,9 +165,11 @@
     <ClInclude Include="DrivingLicenseEndDay.h" />
     <ClInclude Include="DrivingLicenseStartDay.h" />
     <ClInclude Include="EndTime.h" />
+    <ClInclude Include="AdministratorOptions.h" />
+    <ClInclude Include="FirmRegistration.h" />
     <ClInclude Include="IdentificationInfos.h" />
-    <ClInclude Include="menu.h" />
-    <ClInclude Include="prototypes.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Prototypes.h" />
     <ClInclude Include="RentalEndDate.h" />
     <ClInclude Include="RentalSchedule.h" />
     <ClInclude Include="RentalStartDate.h" />

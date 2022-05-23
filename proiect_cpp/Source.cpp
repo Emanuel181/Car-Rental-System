@@ -1,24 +1,12 @@
 #include <iostream>
-#include "prototypes.h"
-#include "menu.h"
+#include <stdlib.h>
+#include <Windows.h>
+#include "Prototypes.h"
+#include "Menu.h"
+#include "AdministratorOptions.h"
+#include "ClientOptions.h"
+#include "FirmRegistration.h"
 
-
-void AdminOptions()
-{
-	std::cout << "admin";
-}
-
-
-void FirmRegistration()
-{
-	std::cout << "firm";
-}
-
-
-void ClientOptions()
-{
-	std::cout << "client";
-}
 
 
 int main()
