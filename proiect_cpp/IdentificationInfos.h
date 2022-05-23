@@ -22,6 +22,13 @@ public:
     std::string GetCustomerCNP()const;
     std::string GetCustomerIDSeries()const;
     std::string GetCustomerIDCardNumber()const;
+    void SetCustomerFirstName(const std::string);
+    void SetCustomerLastName(const std::string);
+    void SetCustomerEmail(const std::string);
+    void SetCustomerTelephone(const std::string);
+    void SetCustomerCNP(const std::string);
+    void SetCustomerIDSeries(const std::string);
+    void SetCustomerIDCardNumber(const std::string);
     
 };
 

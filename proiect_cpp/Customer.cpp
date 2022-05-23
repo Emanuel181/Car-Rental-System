@@ -11,6 +11,26 @@ Customer::Customer(IdentificationInfos identificationInfos, CustomerHomeAdress c
 }
 
 
+Customer::Customer()
+{
+	m_identificationInfos.SetCustomerCNP("\0");
+	m_identificationInfos.SetCustomerEmail("\0");
+	m_identificationInfos.SetCustomerFirstName("\0");
+	m_identificationInfos.SetCustomerIDCardNumber("\0");
+	m_identificationInfos.SetCustomerIDSeries("\0");
+	m_identificationInfos.SetCustomerLastName("\0");
+	m_identificationInfos.SetCustomerTelephone("\0");
+
+	m_customerHomeAddress.SetCustomerCity("\0");
+	m_customerHomeAddress.SetCustomerCountry("\0");
+	m_customerHomeAddress.SetCustomerPostalCode("\0");
+	m_customerHomeAddress.SetCustomerStreet("\0");
+	m_customerHomeAddress.setCustomerStreetNumber("\0");
+
+
+}
+
+
 
 // Getters
 

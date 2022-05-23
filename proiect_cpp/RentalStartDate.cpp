@@ -30,3 +30,17 @@ StartTime RentalStartDate::GetStartTime()const { return m_startTime; }
 
 
 //------------------------------------------------------------------
+
+
+//Setters
+
+void RentalStartDate::SetStartDay(const std::string init) { m_startDay = init; }
+
+
+void RentalStartDate::SetStartMonth(const std::string init) { m_startMonth = init; }
+
+
+void RentalStartDate::SetStartYear(const std::string init) { m_startYear = init; }
+
+
+//--------------------------------------------------------------------------------------

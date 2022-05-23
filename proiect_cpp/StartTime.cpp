@@ -22,3 +22,15 @@ std::string StartTime::GetStartMinutes()const { return m_startMinutes; }
 
 
 //-------------------------------------------------------------------------------
+
+
+
+// Setters
+
+
+void StartTime::SetStartHour(const std::string init) { m_startHour = init; }
+
+
+void StartTime::SetStartMinutes(const std::string init) { m_startMinutes = init; }
+
+//----------------------------------------------------------------------
