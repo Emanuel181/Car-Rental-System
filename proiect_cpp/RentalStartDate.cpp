@@ -5,7 +5,7 @@ RentalStartDate::RentalStartDate(const std::string startDay, const std::string s
 {
 	m_startDay = startDay;
 	m_startMonth = startMonth;
-	m_startMonth = startMonth;
+	m_startYear = startYear;
 	m_startTime = startTime;
 }
 

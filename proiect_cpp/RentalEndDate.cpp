@@ -5,7 +5,7 @@ RentalEndDate::RentalEndDate(const std::string endDay, const std::string endMont
 {
 	m_endDay = endDay;
 	m_endMonth = endMonth;
-	m_endDay = endYear;
+	m_endYear = endYear;
 	m_EndTime = endTime;
 }
 

@@ -9,6 +9,7 @@ private:
     RentalStartDate m_rentalStartDate;
     RentalEndDate m_rentalEndDate;
 public:
+    /*RentalSchedule(RentalStartDate,RentalEndDate);*/
     RentalStartDate GetRentalStartDate()const;
     RentalEndDate GetRentalEndDate()const;
 };

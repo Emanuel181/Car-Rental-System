@@ -11,12 +11,13 @@ class Customer
 {
 private:
     IdentificationInfos m_identificationInfos;
-    CustomerHomeAdress m_customerHomeAdress;
+    CustomerHomeAdress m_customerHomeAddress;
     DrivingLicense m_customerDrivingLicense;
     DateOfBirth m_customerDateOfBirth;
     RentalSchedule m_customerRentalSchedule;
 
 public:
+    Customer(IdentificationInfos, CustomerHomeAdress, DrivingLicense, DateOfBirth, RentalSchedule);
     IdentificationInfos GetCustomerIdentificationInfos()const;
     CustomerHomeAdress GetCustomerHomeAdress()const;
     DrivingLicense GetCustomerDrivingLicense()const;

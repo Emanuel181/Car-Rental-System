@@ -13,6 +13,8 @@ private:
     std::string m_customerIDSeries;
     std::string m_customerIDCardNumber;
 public:
+    IdentificationInfos(const std::string, const std::string, const std::string, const std::string, const std::string, const std::string, const std::string);
+    IdentificationInfos();
     std::string GetCustomerFirstName()const;
     std::string GetCustomerLastName()const;
     std::string GetCustomerEmail()const;
@@ -20,6 +22,6 @@ public:
     std::string GetCustomerCNP()const;
     std::string GetCustomerIDSeries()const;
     std::string GetCustomerIDCardNumber()const;
-    IdentificationInfos(const std::string, const std::string, const std::string, const std::string, const std::string, const std::string, const std::string);
+    
 };
 
