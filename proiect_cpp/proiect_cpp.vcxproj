@@ -165,6 +165,8 @@
     <ClInclude Include="DrivingLicenseStartDay.h" />
     <ClInclude Include="EndTime.h" />
     <ClInclude Include="IdentificationInfos.h" />
+    <ClInclude Include="menu.h" />
+    <ClInclude Include="prototypes.h" />
     <ClInclude Include="RentalEndDate.h" />
     <ClInclude Include="RentalSchedule.h" />
     <ClInclude Include="RentalStartDate.h" />
