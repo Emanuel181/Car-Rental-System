@@ -15,4 +15,6 @@ public:
 	std::string GetStreetNumber() const;
 	std::string GetStreetPostalCode() const;
 
+
+
 };

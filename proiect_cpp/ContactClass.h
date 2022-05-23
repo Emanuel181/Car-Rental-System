@@ -15,3 +15,4 @@ public:
 	std::string GetEmail() const;
 	std::string GetManagerName() const;
 };
+

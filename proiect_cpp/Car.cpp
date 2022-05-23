@@ -32,7 +32,7 @@ Car::Car()
 	m_pricePerDay = 100;
 	m_deposit = 500;
 	m_advancePayment = 0;
-	m_carReview = nullptr;
+	//m_carReview = "\0";
 }
 
 std::string Car::GetCarMake() const {

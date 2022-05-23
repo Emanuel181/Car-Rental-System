@@ -20,4 +20,6 @@ public:
 	double GetCarCondition() const;
 	double GetCarOverallMark() const;
 	std::string GetCarReview() const;
+
+	
 };
