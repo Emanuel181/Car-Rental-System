@@ -18,6 +18,7 @@ private:
 
 public:
     Customer(IdentificationInfos, CustomerHomeAdress, DrivingLicense, DateOfBirth, RentalSchedule);
+    Customer();
     IdentificationInfos GetCustomerIdentificationInfos()const;
     CustomerHomeAdress GetCustomerHomeAdress()const;
     DrivingLicense GetCustomerDrivingLicense()const;

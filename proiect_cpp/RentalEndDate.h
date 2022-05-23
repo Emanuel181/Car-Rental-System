@@ -17,5 +17,8 @@ public:
     std::string GetRentalEndMonth()const;
     std::string GetRentalEndYear()const;
     EndTime GetRentalEndTime()const;
+    void SetEndDay(const std::string);
+    void SetEndMonth(const std::string);
+    void SetEndYear(const std::string);
 };
 

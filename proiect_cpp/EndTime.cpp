@@ -22,3 +22,15 @@ std::string EndTime::GetEndMinutes()const { return m_endMinutes; }
 
 
 //----------------------------------------------------------------
+
+
+//Setters
+
+
+void EndTime::SetEndHour(const std::string init) { m_endHour = init; }
+
+
+void EndTime::SetEndMinutes(const std::string init) { m_endMinutes = init; }
+
+
+//-------------------------------------------------------

@@ -16,5 +16,9 @@ public:
     std::string GetStartMonth()const;
     std::string GetStartYear()const;
     StartTime GetStartTime()const;
+    void SetStartDay(const std::string);
+    void SetStartMonth(const std::string);
+    void SetStartYear(const std::string);
+
 };
 

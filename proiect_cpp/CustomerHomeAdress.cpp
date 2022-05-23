@@ -36,3 +36,24 @@ std::string CustomerHomeAdress::GetCustomerStreetNumber()const { return m_custom
 
 
 //-------------------------------------------------------------------------------------------------
+
+
+// Setters
+
+
+void CustomerHomeAdress::SetCustomerCountry(const std::string init) { m_customerCountry = init; }
+
+
+void CustomerHomeAdress::SetCustomerCity(const std::string init) { m_customerCity = init; }
+
+
+void CustomerHomeAdress::SetCustomerPostalCode(const std::string init) { m_customerPostalCode = init; }
+
+
+void CustomerHomeAdress::SetCustomerStreet(const std::string init) { m_customerStreet = init; }
+
+
+void CustomerHomeAdress::setCustomerStreetNumber(const std::string init) { m_customerStreetNumber = init; }
+
+
+//--------------------------------------------------------------------------------------------------

@@ -1,6 +1,11 @@
 #include "CompanyBranches.h"
 
 
+CompanyBranches::CompanyBranches()
+    :m_branchName{"\0"}, m_countryName{"\0"}, m_cityName{"\0"}, m_numberOfCarsAvaible{0}, m_branchMark{0.0}
+{}
+
+
 // Getters
 
 std::string CompanyBranches::GetBranchName()const { return m_branchName; }

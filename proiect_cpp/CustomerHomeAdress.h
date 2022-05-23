@@ -17,5 +17,12 @@ public:
     std::string GetCustomerPostalCode()const;
     std::string GetCustomerStreet()const;
     std::string GetCustomerStreetNumber()const;
+
+    void SetCustomerCountry(const std::string);
+    void SetCustomerCity(const std::string);
+    void SetCustomerPostalCode(const std::string);
+    void SetCustomerStreet(const std::string);
+    void setCustomerStreetNumber(const std::string);
+
 };
 

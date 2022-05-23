@@ -12,5 +12,7 @@ public:
     EndTime();
     std::string GetEndHour()const;
     std::string GetEndMinutes()const;
+    void SetEndHour(const std::string);
+    void SetEndMinutes(const std::string);
 };
 

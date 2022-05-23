@@ -45,3 +45,30 @@ std::string IdentificationInfos::GetCustomerIDCardNumber()const { return m_custo
 
 
 //-----------------------------------------------------------------------------------------------------
+
+
+// Setters
+
+
+void IdentificationInfos::SetCustomerFirstName(const std::string init) { m_customerFirstName = init; }
+
+
+void IdentificationInfos::SetCustomerLastName(const std::string init) { m_customerLastName = init; }
+
+
+void IdentificationInfos::SetCustomerEmail(const std::string init) { m_customerEmail = init; }
+
+
+void IdentificationInfos::SetCustomerTelephone(const std::string init) { m_customerTelephone = init; }
+
+
+void IdentificationInfos::SetCustomerCNP(const std::string init) { m_customerCNP = init; }
+
+
+void IdentificationInfos::SetCustomerIDSeries(const std::string init) { m_customerIDSeries = init; }
+
+
+void IdentificationInfos::SetCustomerIDCardNumber(const std::string init) { m_customerIDCardNumber = init; }
+
+
+//----------------------------------------------------------------------------------------------------------------------

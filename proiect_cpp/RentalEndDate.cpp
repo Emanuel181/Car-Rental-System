@@ -30,3 +30,17 @@ EndTime RentalEndDate::GetRentalEndTime()const { return m_EndTime; }
 
 
 //--------------------------------------------------------------------------
+
+
+// Setters
+
+void RentalEndDate::SetEndDay(const std::string init) { m_endDay = init; }
+
+
+void RentalEndDate::SetEndMonth(const std::string init) { m_endMonth = init; }
+
+
+void RentalEndDate::SetEndYear(const std::string init) { m_endYear = init; }
+
+
+//-------------------------------------------------------------------------------
