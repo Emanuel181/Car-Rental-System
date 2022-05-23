@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 
 void FirmRegistration()
@@ -11,11 +12,12 @@ void FirmRegistration()
 	std::string input;
 	while (1)
 	{
+		std::cout << "\t";
 		std::cin >> input;
 		std::cin.ignore();
 		if (InputValid(input))
 		{
-			int option = stoi(input);
+			int option = std::stoi(input);
 			if (option <= 2)
 			{
 				if (option == 1)

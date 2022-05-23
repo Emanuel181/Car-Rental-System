@@ -12,6 +12,7 @@ void AdminOptions()
 	std::string input;
 	while (1)
 	{
+		std::cout << "\t";
 		std::cin >> input;
 		std::cin.ignore();
 		if (InputValid(input))

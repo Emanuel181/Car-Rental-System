@@ -146,6 +146,9 @@
     <ClInclude Include="CarReview.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Validation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="proiect_cpp.rc">

@@ -2,17 +2,6 @@
 #include <string>
 
 
-
-bool InputValid(std::string input)
-{
-	for (int i = 0; i < input.size(); i++)
-	{
-		if (strchr("01234567890", input[i]) == 0)
-			return false;
-	}
-	return true;
-}
-
 void MainMenu()
 {
 	std::cout << "\t[1] Administrator\n";
@@ -23,6 +12,7 @@ void MainMenu()
 	std::string input;
 	while (1)
 	{
+		std::cout << "\t";
 		std::cin >> input;
 		std::cin.ignore();
 		if (InputValid(input))
