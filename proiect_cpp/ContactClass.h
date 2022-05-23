@@ -14,5 +14,8 @@ public:
 	std::string GetPhoneNumber() const;
 	std::string GetEmail() const;
 	std::string GetManagerName() const;
+	void SetPhoneNumber(const std::string);
+	void SetEmail(const std::string);
+	void SetManagerName(const std::string);
 };
 

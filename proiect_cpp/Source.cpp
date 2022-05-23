@@ -8,9 +8,9 @@
 #include "FirmRegistration.h"
 
 
-
 int main()
 {
 	MainMenu();
+
 	return 0;
 }

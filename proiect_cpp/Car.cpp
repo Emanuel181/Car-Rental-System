@@ -32,7 +32,12 @@ Car::Car()
 	m_pricePerDay = 100;
 	m_deposit = 500;
 	m_advancePayment = 0;
-	//m_carReview = "\0";
+	m_carReview.SetCarCondition(0.0);
+	m_carReview.SetCleanliness(0.0);
+	m_carReview.SetComfort(0.0);
+	m_carReview.SetOverallMark(0.0);
+	m_carReview.SetValue(0.0);
+	m_carReview.SetCarReview("\0");
 }
 
 std::string Car::GetCarMake() const {

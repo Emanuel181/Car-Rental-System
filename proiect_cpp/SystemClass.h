@@ -11,7 +11,10 @@ private:
 public:
     static std::string GetNameOfHeadCompany();
     std::vector <CompanyBranches> GetCompanyBranches()const;
+    SystemClass();
+    SystemClass(const std::string, const CompanyBranches);
+    static void SetNameOfHeadCompany(const std::string);
 };
 
 
-std::string SystemClass::m_nameOfHeadCompany;
+// ? std::string SystemClass::m_nameOfHeadCompany; - nu sterge
