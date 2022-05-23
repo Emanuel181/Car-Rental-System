@@ -19,6 +19,7 @@ private:
     std::vector <Car> m_branchCars;
     ContactClass m_contactClass;
 public:
+    CompanyBranches(const std::string, const std::string, const std::string, const std::string, const unsigned long long, const double, const std::string, const std::string, const std::string, const std::string, const std::string, const std::string);
     CompanyBranches();
     std::string GetBranchName()const;
     std::string GetCountryName()const;
