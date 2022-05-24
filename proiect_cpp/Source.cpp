@@ -47,6 +47,7 @@ void utility_loadingScreen()
 int main()
 {
     utility_loadingScreen();
+    system("cls");
     MainMenu();
 
     return 0;
