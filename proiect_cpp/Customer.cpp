@@ -20,13 +20,13 @@ Customer::Customer()
 	m_identificationInfos.SetCustomerIDSeries("\0");
 	m_identificationInfos.SetCustomerLastName("\0");
 	m_identificationInfos.SetCustomerTelephone("\0");
+	m_identificationInfos.SetCustomerPassword("\0");
 
 	m_customerHomeAddress.SetCustomerCity("\0");
 	m_customerHomeAddress.SetCustomerCountry("\0");
 	m_customerHomeAddress.SetCustomerPostalCode("\0");
 	m_customerHomeAddress.SetCustomerStreet("\0");
 	m_customerHomeAddress.setCustomerStreetNumber("\0");
-
 
 }
 

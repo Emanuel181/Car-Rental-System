@@ -1,4 +1,5 @@
 #pragma once
+#include "SystemClass.h"
 
 
 void utility_loadingScreen();
