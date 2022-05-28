@@ -1,4 +1,5 @@
 #include "LocationAddress.h"
+#include <iostream>
 
 LocationAddress::LocationAddress(const std::string streetName, const std::string streetNumber, const std::string streetPostalCode)
 {
@@ -14,6 +15,20 @@ LocationAddress::LocationAddress()
 	m_streetPostalCode = "\0";
 }
 
+
+std::ostream& operator << (std::ostream& COUT, const LocationAddress& obj)
+{
+	COUT << "Location: \n";
+	COUT << "Street name: " << obj.GetStreetName() << '\n';
+	COUT << "Street number: " << obj.GetStreetNumber() << '\n';
+	COUT << "Postal code: " << obj.GetStreetPostalCode() << '\n';
+
+	return COUT;
+}
+
+
+// Getters
+
 std::string LocationAddress::GetStreetName() const {
 	return m_streetName;
 }
@@ -25,3 +40,6 @@ std::string LocationAddress::GetStreetNumber() const {
 std::string LocationAddress::GetStreetPostalCode() const {
 	return m_streetPostalCode;
 }
+
+
+//------------------------------------------------------------------

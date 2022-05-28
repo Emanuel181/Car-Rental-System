@@ -1,4 +1,5 @@
 #include "ContactClass.h"
+#include <iostream>
 
 ContactClass::ContactClass(const std::string phoneNumber, const std::string email, const std::string managerName)
 {
@@ -11,6 +12,17 @@ ContactClass::ContactClass() {
 	m_phoneNumber = "\0";
 	m_email = "\0";
 	m_managerName = "\0";
+}
+
+
+std::ostream& operator << (std::ostream& COUT, const ContactClass& obj)
+{
+	COUT << "CONTACT:\n";
+	COUT << "Phone number: " << obj.GetPhoneNumber();
+	COUT << "Email: " << obj.GetEmail();
+	COUT << "Manager name: " << obj.GetManagerName();
+
+	return COUT;
 }
 
 

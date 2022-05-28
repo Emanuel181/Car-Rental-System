@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
+#include "SystemClass.h"
 
 
-void ClientOptions()
+void ClientOptions(SystemClass mainOBJ)
 {
 	Sleep(0.016);
 	system("cls");
@@ -25,14 +26,14 @@ void ClientOptions()
 					Sleep(0.016);
 					system("cls");
 					PersonalDetails();
-					ViewCompanies();
+					ViewCompanies(mainOBJ);
 					break;
 				}
 				if (option == 2)
 				{
 					Sleep(0.016);
 					system("cls");
-					MainMenu();
+					MainMenu(mainOBJ);
 					break;
 				}
 			}

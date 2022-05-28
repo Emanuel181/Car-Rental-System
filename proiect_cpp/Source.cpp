@@ -7,6 +7,7 @@
 #include "AdministratorOptions.h"
 #include "ClientOptions.h"
 #include "FirmRegistration.h"
+#include "SystemClass.h"
 
 void utility_loadingScreen()
 {
@@ -46,9 +47,11 @@ void utility_loadingScreen()
 
 int main()
 {
-    utility_loadingScreen();
-    system("cls");
-    MainMenu();
+    //utility_loadingScreen();
+    //system("cls");
+    SystemClass mainOBJ;
+
+    MainMenu(mainOBJ);
 
     return 0;
 }

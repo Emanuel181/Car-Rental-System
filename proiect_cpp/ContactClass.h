@@ -17,5 +17,6 @@ public:
 	void SetPhoneNumber(const std::string);
 	void SetEmail(const std::string);
 	void SetManagerName(const std::string);
+	friend std::ostream& operator << (std::ostream&, const ContactClass&);
 };
 

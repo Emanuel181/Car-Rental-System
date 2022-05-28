@@ -1,14 +1,18 @@
 #include "CompanyBranches.h"
+#include <iostream>
+#include <string>
 
 
 CompanyBranches::CompanyBranches(const std::string branchName, const std::string countryName, const std::string cityName,
-                const std::string reviews, const unsigned long long numberOfCarsAvaible, const double branchMark, 
+                const std::string reviews, const std::string OBS, const unsigned long long numberOfCarsAvaible, const double branchMark, 
                 const std::string streetName, const std::string streetNumber, const std::string streetPostalCode, 
                 const std::string phoneNumber, const std::string email, const std::string managerName)
+    :m_administratorOBS{"\0"}
 {
     m_branchName = branchName;
     m_countryName = countryName;
     m_cityName = cityName;
+
 
     m_reviews = reviews;
     m_numberOfCarsAvaible = numberOfCarsAvaible;
@@ -21,6 +25,26 @@ CompanyBranches::CompanyBranches(const std::string branchName, const std::string
 CompanyBranches::CompanyBranches()
     :m_branchName{"\0"}, m_countryName{"\0"}, m_cityName{"\0"}, m_numberOfCarsAvaible{0}, m_branchMark{0.0}
 {}
+
+
+std::ostream& operator << (std::ostream& COUT, const CompanyBranches& obj)
+{
+    COUT << "Company name: " << obj.GetBranchName() << '\n';
+    COUT << "Country: " << obj.GetCountryName() << '\n';
+    COUT << "City: " << obj.GetCityName() << '\n';
+    COUT << "Reviews: \n";
+    for (auto review : obj.GetReviews())
+    {
+        COUT << review << '\n';
+    }
+    COUT << "Observations from administrator: " << obj.GetAdministratorOBS() << '\n';
+    COUT << "Number of cars avaible: " << obj.GetNumberOfCarsAvaible();
+    COUT << "Branch mark: " << obj.GetBranchMark();
+    COUT << obj.GetLocationAddress() << '\n';
+    COUT << obj.GetContactClass() << '\n';
+
+    return COUT;
+}
 
 
 // Getters
@@ -53,6 +77,9 @@ std::vector <Car> CompanyBranches::GetBranchCars() const {return m_branchCars;}
 
 
 ContactClass CompanyBranches::GetContactClass() const {return m_contactClass;}
+
+
+std::string CompanyBranches::GetAdministratorOBS() const {return m_administratorOBS;}
 
 //-----------------------------------------------------------------------------------------------
 

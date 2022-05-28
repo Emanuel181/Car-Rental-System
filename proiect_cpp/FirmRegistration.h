@@ -2,7 +2,7 @@
 
 #include <string>
 
-void FirmRegistration()
+void FirmRegistration(SystemClass mainOBJ)
 {
 	Sleep(0.016);
 	system("cls");
@@ -31,7 +31,7 @@ void FirmRegistration()
 				{
 					Sleep(0.016);
 					system("cls");
-					MainMenu();
+					MainMenu(mainOBJ);
 					break;
 				}
 			}

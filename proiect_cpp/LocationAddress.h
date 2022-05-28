@@ -14,4 +14,6 @@ public:
 	std::string GetStreetName() const;
 	std::string GetStreetNumber() const;
 	std::string GetStreetPostalCode() const;
+	friend std::ostream& operator << (std::ostream&, const LocationAddress&);
+
 };

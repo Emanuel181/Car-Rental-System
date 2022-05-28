@@ -1,11 +1,22 @@
 #pragma once
 #include <string>
+#include "SystemClass.h"
+#include <iostream>
 
 
-void AdminOptions()
+void ViewCompanies(SystemClass mainOBJ)
 {
-	Sleep(0.016);
-	system("cls");
+	for (auto company : mainOBJ.GetCompanyBranches())
+	{
+		std::cout << company;
+	}
+}
+
+
+void AdminOptions(SystemClass mainOBJ)
+{
+	Sleep(0.016);system("cls");
+
 	std::cout << "\t[1] View registered companies\n";
 	std::cout << "\t[2] Go to main page\n";
 	std::cout << "\tYour option:\n";
@@ -13,8 +24,8 @@ void AdminOptions()
 	while (1)
 	{
 		std::cout << "\t";
-		std::cin >> input;
-		std::cin.ignore();
+		std::cin >> input; std::cin.ignore();
+
 		if (InputValid(input))
 		{
 			int option = stoi(input);
@@ -24,14 +35,14 @@ void AdminOptions()
 				{
 					Sleep(0.016);
 					system("cls");
-					ViewCompanies();
+					ViewCompanies(mainOBJ);
 					break;
 				}
 				if (option == 2)
 				{
 					Sleep(0.016);
 					system("cls");
-					MainMenu();
+					MainMenu(mainOBJ);
 					break;
 				}
 			}
@@ -47,9 +58,4 @@ void AdminOptions()
 			std::cout << "\tTry again\n";
 		}
 	}
-}
-
-void ViewCompanies()
-{
-
 }
