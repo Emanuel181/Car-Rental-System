@@ -2,7 +2,7 @@
 #include <string>
 
 
-void MainMenu()
+void MainMenu(SystemClass mainOBJ)
 {
 	std::cout << "\t[1] Administrator\n";
 	std::cout << "\t[2] Company registration\n";
@@ -21,17 +21,17 @@ void MainMenu()
 			if (option <= 4) {
 				if (option == 1)
 				{
-					AdminOptions();
+					AdminOptions(mainOBJ);
 					break;
 				}
 				if (option == 2)
 				{
-					FirmRegistration();
+					FirmRegistration(mainOBJ);
 					break;
 				}
 				if (option == 3)
 				{
-					ClientOptions();
+					ClientOptions(mainOBJ);
 					break;
 				}
 				if (option == 4)
