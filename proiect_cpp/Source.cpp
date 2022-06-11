@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <Windows.h>
+#include <algorithm>
 #include "Prototypes.h"
 #include "Validation.h"
 #include "Menu.h"

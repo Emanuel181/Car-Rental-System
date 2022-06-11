@@ -22,9 +22,13 @@ void Registrate();
 //Client stuff
 void ClientOptions(SystemClass);
 void AccountValidation();
-void RentalPeriod();
+void RentalPeriod(std::string);
 void ReadCustomerPassword(std::string&);
 void ReadRentalDetails(std::string&, std::string&);
+void DisplayAccountDetails(std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string);
+void DisplayLine(int);
+void DisplaySpaces(int);
+int maxim(int, int);
 void ConfirmCreateAccount(bool&);
 void ReadHomeDetails(std::string&, std::string&, std::string&, std::string&, std::string&);
 void ReadPersonalData(std::string&, std::string&, std::string&, std::string&, std::string&, std::string&, std::string&);
@@ -34,12 +38,12 @@ void ReadDrivingLicenseDetails(std::string&, std::string&, std::string&, std::st
 
 
 //Account stuff
-void LoginIntoAccount();
+void LoginIntoAccount(std::string&);
 void CreateAnAccount();
 
 
 //Checking
 bool EmailValidation(std::string);
 bool InputValid(std::string);
-bool isChar(char);
+bool isChar(const char);
 bool isDigit(const char);

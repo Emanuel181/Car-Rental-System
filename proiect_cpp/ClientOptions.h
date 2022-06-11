@@ -1,63 +1,25 @@
 #pragma once
 #include <string>
+#include <cstring>
 #include <fstream>
+#include <iostream>
 #include "SystemClass.h"
+#include "ReadUserData.h"
+#include "AccountStuff.h"
 
 
-void LoginIntoAccount() {
-	std::string passwordConfirmation, emailConfirmation, email, password;
-	std::cout << "\tPlease enter the email address:\n";
-	std::cout << "\t";
-	std::cin >> email;
-	std::cout << "\n\tPlease enter the password:\n";
-	std::cout << "\t";
-	std::cin >> password;
-	std::cout << "\t";
-
-
-}
-
-
-void CreateAnAccount() {
-	std::string customerCountry, customerCity, customerPostalCode, customerStreet, customerStreetNumber;
-	std::string FirstName, LastName, Email, Telephone, CNP, IDSeries, IDNumber, Mark;
-	std::string DrivingStartDay, DrivingStartMonth, DrivingStartYear, DrivingEndDay, DrivingEndMonth, DrivingEndYear;
-	std::string Password, AbleToDrive;
-	std::string startRent, stopRent;
-	bool valid = false;
-
-
-	ReadRentalDetails(startRent, stopRent);
-	ReadPersonalData(FirstName, LastName, Email, Telephone, CNP, IDSeries, IDNumber);
-	ReadHomeDetails(customerCountry, customerCity, customerPostalCode, customerStreet, customerStreetNumber);
-	ReadDrivingLicenseDetails(DrivingStartDay, DrivingStartMonth, DrivingStartYear, DrivingEndDay, DrivingEndMonth, DrivingEndYear);
-	ReadCustomerPassword(Password);
-
-
-	std::string personDetails;
-	personDetails += FirstName + ";" + LastName + ";" + Email + ";" + Telephone + ";" + CNP + ";" + IDSeries + ";" + IDNumber + ";";
-	personDetails += customerCountry + ";" + customerCity + ";" + customerPostalCode + ";" + customerStreet + ";" + customerStreetNumber + ";";
-	personDetails += DrivingStartDay + ";" + DrivingStartMonth + ";" + DrivingStartYear + ";" + DrivingEndDay + ";" + DrivingEndMonth + ";" + DrivingEndYear + ";" + IDNumber + ";";
-	personDetails += Password + ";" + startRent + ";" + stopRent;
-	ConfirmCreateAccount(valid);
-	if (valid == true) {
-		std::ofstream fileOutput("ClientsDatabase.txt", std::ios_base::app | std::ios_base::out);
-		fileOutput << personDetails << "\n";
-		fileOutput.close();
-	}
-}
-
-
-void AccountValidation() {
+void ConfirmCreateAccount(bool& valid)
+{
 	Sleep(0.016);
-	system("cls");
-	std::cout << "\t[1] Log in\n";
-	std::cout << "\t[2] Create an account\n";
+	std::cout << "\n\n";
+	std::cout << "\tDo you want to create the account?\n";
+	std::cout << "\t[1] Yes\n";
+	std::cout << "\t[2] No\n";
 	std::cout << "\tYour option:\n";
 	std::string input;
 	while (1)
 	{
-		std::cout << "\t";
+		std::cout << "\t\t";
 		std::cin >> input;
 		std::cin.ignore();
 		if (InputValid(input))
@@ -67,18 +29,12 @@ void AccountValidation() {
 			{
 				if (option == 1)
 				{
-					Sleep(0.016);
-					system("cls");
-					LoginIntoAccount();
-					RentalPeriod();
+					valid = true;
 					break;
 				}
 				if (option == 2)
 				{
-					Sleep(0.016);
-					system("cls");
-					CreateAnAccount();
-
+					valid = false;
 					break;
 				}
 			}
@@ -146,543 +102,11 @@ void ClientOptions(SystemClass mainOBJ)
 }
 
 
-void ReadPersonalData(std::string& FirstName, std::string& LastName, std::string& Email, std::string& Telephone, std::string& CNP, std::string& IDSeries, std::string& IDNumber)
-{
-	std::cout << "\tPersonal data\n\n";
-
-	std::cout << "\tFirst name: ";
-	std::getline(std::cin, FirstName);
-	std::cout << "\n";
-
-	std::cout << "\tLast name: ";
-	std::getline(std::cin, LastName);
-	std::cout << "\n";
-
-	std::cout << "\tEmail: ";
-	while (1)
-	{
-		std::cin >> Email;
-		std::cout << "\n\t";
-		std::cin.ignore();
-		if (EmailValidation(Email) == true)
-			break;
-		else
-		{
-			std::cout << "The email address introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-	//?
-	std::cout << "Telephone: ";
-	std::cin >> Telephone;
-	std::cout << "\n";
-	std::cin.ignore();
-
-	std::cout << "\tCNP: ";
-	while (1)
-	{
-		std::cin >> CNP;
-		std::cout << "\n\t";
-		std::cin.ignore();
-		if (InputValid(CNP) == true && CNP.length() == 13)
-			break;
-		else
-		{
-			std::cout << "The CNP introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-
-	std::cout << "ID Card Series: ";
-	while (1)
-	{
-		std::cin >> IDSeries;
-		std::cout << "\n\t";
-		std::cin.ignore();
-		if (IDCardSeriesValid(IDSeries) == true)
-			break;
-		else
-		{
-			std::cout << "The ID Card series introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-
-	std::cout << "ID Card Number: ";
-	while (1)
-	{
-		std::cin >> IDNumber;
-		std::cout << "\n\t";
-		std::cin.ignore();
-		if (InputValid(IDNumber) == true)
-			break;
-		else
-		{
-			std::cout << "The ID Card Number introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-
-}
-
-
-void ReadStartRentalDetails(std::string& StartDay, std::string& StartMonth, std::string& StartYear, std::string& StartHour, std::string& StartMinute)
-{
-	std::cout << "\tRental details - start date:\n\n";
-	std::cout << "\tRental Start Day: ";
-	while (1)
-	{
-		std::cin >> StartDay;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(StartDay) == true && (StartDay.length() <= 2 && StartDay.length() >= 1))
-		{
-			int numar = stoi(StartDay);
-			if (numar >= 1 && numar <= 31)
-				break;
-			else
-			{
-				std::cout << "\tThe rental start day introduced is not valid.\n";
-				std::cout << "\tTry again.\n\n\t";
-			}
-		}
-		else
-		{
-			std::cout << "\tThe rental start day introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-	std::cout << "\tRental Start Month: ";
-	while (1)
-	{
-		std::cin >> StartMonth;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(StartMonth) == true && (StartMonth.length() <= 2 && StartMonth.length() >= 1))
-		{
-			int numar = stoi(StartMonth);
-			if (numar >= 1 && numar <= 12)
-				break;
-			else
-			{
-				std::cout << "\tThe rental start month introduced is not valid.\n";
-				std::cout << "\tTry again.\n\n\t";
-			}
-		}
-		else
-		{
-			std::cout << "\tThe rental start month introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-	std::cout << "\tRental Start Year: ";
-	while (1)
-	{
-		std::cin >> StartYear;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(StartYear) == true && StartYear.length() == 4)
-			break;
-		else
-		{
-			std::cout << "\tThe rental start year introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-	std::cout << "\tRental Start Hour (should be between 8 and 17): ";
-	while (1)
-	{
-		std::cin >> StartHour;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (RentalHourValidation(StartHour) == true)
-			break;
-		else
-		{
-			std::cout << "\tThe rental start hour introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-	std::cout << "\tRental Start Minute (should be between :00 or :30): ";
-	while (1)
-	{
-		std::cin >> StartMinute;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (RentalMinuteValidation(StartMinute) == true)
-			break;
-		else
-		{
-			std::cout << "\tThe rental start minute introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-}
-
-
-void ReadStopRentalDetails(std::string& EndDay, std::string& EndMonth, std::string& EndYear, std::string& EndHour, std::string& EndMinute, std::string StartDay, std::string StartMonth, std::string StartYear)
-{
-	int startDay = stoi(StartDay);
-	int startMonth = stoi(StartMonth);
-	int startYear = stoi(StartYear);
-	std::cout << "\tRental details - end date:\n\n";
-	std::cout << "\tRental End Year: ";
-	while (1)
-	{
-		std::cin >> EndYear;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(EndYear) == true) {
-			int endYear = stoi(EndYear);
-			if (EndYear.length() == 4 && endYear >= startYear)
-			{
-				break;
-			}
-			else
-			{
-				std::cout << "\tThe rental end year introduced is not valid.\n";
-				std::cout << "\tTry again.\n\n\t";
-			}
-		}
-	}
-
-	std::cout << "\tRental End Month: ";
-	while (1)
-	{
-		std::cin >> EndMonth;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(EndMonth) == true && (EndMonth.length() <= 2 && EndMonth.length() >= 1))
-		{
-			int numar = stoi(EndMonth);
-			if (numar >= 1 && numar <= 12 && numar >= startMonth)
-				break;
-			else
-			{
-				std::cout << "\tThe rental end month introduced is not valid.\n";
-				std::cout << "\tTry again.\n\n\t";
-			}
-		}
-		else
-		{
-			std::cout << "\tThe rental end month introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-	std::cout << "\tRental End Day: ";
-	while (1)
-	{
-		std::cin >> EndDay;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(EndDay) == true && (EndDay.length() <= 2 && EndDay.length() >= 1))
-		{
-			int numar = stoi(EndDay);
-			if (numar >= 1 && numar <= 31 && numar > startDay)
-				break;
-			else
-			{
-				std::cout << "\tThe rental end day introduced is not valid.\n";
-				std::cout << "\tTry again.\n\n\t";
-			}
-		}
-		else
-		{
-			std::cout << "\tThe rental end day introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-
-	std::cout << "\tRental End Hour (should be between 8 and 17): ";
-	while (1)
-	{
-		std::cin >> EndHour;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (RentalHourValidation(EndHour) == true)
-			break;
-		else
-		{
-			std::cout << "\tThe rental end hour introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-	std::cout << "\tRental End Minute (should be between :00 or :30): ";
-	while (1)
-	{
-		std::cin >> EndMinute;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (RentalMinuteValidation(EndMinute) == true)
-			break;
-		else
-		{
-			std::cout << "\tThe rental end minute introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-}
-
-
-void ReadDrivingLicenseDetails(std::string& DrivingStartDay, std::string& DrivingStartMonth, std::string& DrivingStartYear, std::string& DrivingEndDay, std::string& DrivingEndMonth, std::string& DrivingEndYear)
-{
-	std::cout << "Driving license details - start date:\n\n";
-	std::cout << "\tDriving License Start Day: ";
-	while (1)
-	{
-		std::cin >> DrivingStartDay;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(DrivingStartDay) == true && (DrivingStartDay.length() <= 2 && DrivingStartDay.length() >= 1))
-		{
-			int numar = stoi(DrivingStartDay);
-			if (numar >= 1 && numar <= 31)
-				break;
-			else
-			{
-				std::cout << "\tThe driving license start day introduced is not valid.\n";
-				std::cout << "\tTry again.\n\n\t";
-			}
-		}
-		else
-		{
-			std::cout << "\tThe driving license start day introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-	std::cout << "\tDriving license Start Month: ";
-	while (1)
-	{
-		std::cin >> DrivingStartMonth;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(DrivingStartMonth) == true && (DrivingStartMonth.length() <= 2 && DrivingStartMonth.length() >= 1))
-		{
-			int numar = stoi(DrivingStartMonth);
-			if (numar >= 1 && numar <= 12)
-				break;
-			else
-			{
-				std::cout << "\tThe driving license start month introduced is not valid.\n";
-				std::cout << "\tTry again.\n\n\t";
-			}
-		}
-		else
-		{
-			std::cout << "\tThe driving license start month introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-	std::cout << "\tDriving license Start Year: ";
-	while (1)
-	{
-		std::cin >> DrivingStartYear;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(DrivingStartYear) == true && DrivingStartYear.length() == 4)
-			break;
-		else
-		{
-			std::cout << "\tThe driving license start year introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-
-	int drivingStartDay = stoi(DrivingStartDay);
-	int drivingStartMonth = stoi(DrivingStartMonth);
-	int drivingStartYear = stoi(DrivingStartYear);
-	std::cout << "\tDriving license End Year: ";
-	while (1)
-	{
-		std::cin >> DrivingEndYear;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(DrivingEndYear) == true)
-		{
-			int drivingEndYear = stoi(DrivingEndYear);
-			if (DrivingEndYear.length() == 4 && drivingEndYear >= drivingStartYear)
-			{
-				break;
-			}
-			else
-			{
-				std::cout << "\tThe driving license end year introduced is not valid.\n";
-				std::cout << "\tTry again.\n\n\t";
-			}
-		}
-	}
-
-	std::cout << "\tDriving license End Month: ";
-	while (1)
-	{
-		std::cin >> DrivingEndMonth;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(DrivingEndMonth) == true && (DrivingEndMonth.length() <= 2 && DrivingEndMonth.length() >= 1))
-		{
-			int numar = stoi(DrivingEndMonth);
-			if (numar >= 1 && numar <= 12 && numar >= drivingStartMonth)
-				break;
-			else
-			{
-				std::cout << "\tThe driving license end month introduced is not valid.\n";
-				std::cout << "\tTry again.\n\n\t";
-			}
-		}
-		else
-		{
-			std::cout << "\tThe driving license end month introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-
-	std::cout << "\tDriving License End Day: ";
-	while (1)
-	{
-		std::cin >> DrivingEndDay;
-		std::cout << "\n";
-		std::cin.ignore();
-		if (InputValid(DrivingEndDay) == true && (DrivingEndDay.length() <= 2 && DrivingEndDay.length() >= 1))
-		{
-			int numar = stoi(DrivingEndDay);
-			if (numar >= 1 && numar <= 31 && numar >= drivingStartDay)
-				break;
-			else
-			{
-				std::cout << "\tThe driving license end day introduced is not valid.\n";
-				std::cout << "\tTry again.\n\n\t";
-			}
-		}
-		else
-		{
-			std::cout << "\tThe driving license end day introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-}
-
-
-void RentalPeriod()
-{
-	std::string StartDay, StartMonth, StartYear, StartHour, StartMinute;
-	std::string EndDay, EndMonth, EndYear, EndHour, EndMinute;
-
-	ReadStartRentalDetails(StartDay, StartMonth, StartYear, StartHour, StartMinute);
-	ReadStopRentalDetails(EndDay, EndMonth, EndYear, EndHour, EndMinute, StartDay, StartMonth, StartYear);
-}
-
-
-void ReadCustomerPassword(std::string& Password)
-{
-	std::string PasswordConfirmation;
-	std::cout << "\tPlease enter the password:\n";
-	std::cout << "\t";
-	std::cin >> Password;
-	std::cout << "\n\tPlease enter it again for confirmation:\n";
-	while (1)
-	{
-		std::cout << "\t";
-		std::cin >> PasswordConfirmation;
-		if (Password != PasswordConfirmation)
-		{
-			std::cout << "\n\tThe two passwords do not match\n";
-			std::cout << "\tTry again to confirm your password.\n\n";
-		}
-		else
-		{
-			break;
-		}
-	}
-}
-
-
-void ReadHomeDetails(std::string& customerCountry, std::string& customerCity, std::string& customerPostalCode, std::string& customerStreet, std::string& customerStreetNumber)
-{
-	std::cout << "Home address details\n\n";
-
-	std::cout << "\tCountry: ";
-	std::getline(std::cin, customerCountry);
-	std::cout << "\n";
-
-	std::cout << "\tCity: ";
-	std::getline(std::cin, customerCity);
-	std::cout << "\n";
-
-	std::cout << "\tPostal code: ";
-	while (1)
-	{
-		std::cin >> customerPostalCode;
-		std::cout << "\n\t";
-		std::cin.ignore();
-		if (InputValid(customerPostalCode) == true)
-			break;
-		else
-		{
-			std::cout << "The postal code introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-	std::cout << "Street name: ";
-	std::getline(std::cin, customerStreet);
-	std::cout << "\n";
-
-
-	std::cout << "\tCustomer street number: ";
-	while (1)
-	{
-		std::cin >> customerStreetNumber;
-		std::cout << "\n\t";
-		std::cin.ignore();
-		if (InputValid(customerStreetNumber) == true)
-			break;
-		else
-		{
-			std::cout << "The street number introduced is not valid.\n";
-			std::cout << "\tTry again.\n\n\t";
-		}
-	}
-
-}
-
-
-void ReadRentalDetails(std::string& startRent, std::string& stopRent)
-{
-	std::cout << "\tRental details\n\n";
-
-	std::cout << "\tIntroduce the city from where you want to rent the car: ";
-	std::getline(std::cin, startRent);
-	std::cout << "\n";
-
-	std::cout << "\tIntroduce the city from where you are going to leave the car: ";
-	std::getline(std::cin, stopRent);
-	std::cout << "\n";
-}
-
-void ConfirmCreateAccount(bool& valid)
-{
+void AccountValidation() {
 	Sleep(0.016);
 	system("cls");
-	std::cout << "\tDo you want to create the account?\n";
-	std::cout << "\t[1] Yes\n";
-	std::cout << "\t[2] No\n";
+	std::cout << "\t[1] Log in\n";
+	std::cout << "\t[2] Create an account\n";
 	std::cout << "\tYour option:\n";
 	std::string input;
 	while (1)
@@ -697,12 +121,34 @@ void ConfirmCreateAccount(bool& valid)
 			{
 				if (option == 1)
 				{
-					valid = true;
-					break;
+					Sleep(0.2);
+					system("cls");
+					std::string customerEmailAddress = "";
+					LoginIntoAccount(customerEmailAddress);
+					std::cout << "\n\tRedirecting to rental page...";
+					Sleep(2000);
+					system("cls");
+					std::cin.ignore();
+					RentalPeriod(customerEmailAddress);
+					break; 
 				}
 				if (option == 2)
 				{
-					valid = false;
+					Sleep(0.2);
+					system("cls");
+					CreateAnAccount();
+					Sleep(0.2);
+					system("cls");
+					std::cout << "\n\tRedirecting to login page...";
+					Sleep(2000);
+					system("cls");
+					std::string customerEmailAddress = "";
+					LoginIntoAccount(customerEmailAddress);
+					std::cout << "\n\tRedirecting to rental page...";
+					Sleep(2000);
+					system("cls");
+					std::cin.ignore();
+					RentalPeriod(customerEmailAddress);
 					break;
 				}
 			}
@@ -718,4 +164,269 @@ void ConfirmCreateAccount(bool& valid)
 			std::cout << "\tTry again\n";
 		}
 	}
+}
+
+
+void LoginIntoAccount(std::string& customerEmailAddress) {
+	std::string email = "", password = "";
+	std::cout << "\tPlease enter the email address:\n";
+	std::cout << "\t";
+	std::cin >> email;
+	while (1)
+	{
+		std::cout << "\n\tPlease enter the password:\n";
+		std::cout << "\t";
+		std::cin >> password;
+		std::cout << "\t";
+		std::ifstream fin("Accounts.txt");
+		char* line = new char[300];
+		customerEmailAddress = "";
+		std::string customerPassword = "";
+		bool valid = false;
+		while (fin >> line)
+		{
+			char* p = strtok(line, ";");
+			int count = 0;
+			customerEmailAddress = "", customerPassword = "";
+			while (p)
+			{
+				if (count == 2)
+				{
+					customerEmailAddress = p;
+				}
+				if (count == 18)
+				{
+					customerPassword = p;
+				}
+				if (customerEmailAddress != "" && customerPassword != "") {
+					if (customerEmailAddress == email && customerPassword == password)
+					{
+						valid = true;
+						std::cout << "\n\tYour credentials are correct.\n\n";
+						break;
+					}
+				}
+				count++;
+				p = strtok(nullptr, ";");
+			}
+		}
+		if (valid == true)
+			break;
+		else
+		{
+			Sleep(0.2);
+			system("cls");
+			std::cout << "\n\tTry again.Your password is incorrect.\n";
+		}
+	}
+}
+
+int maxim(int a, int b)
+{
+	if (a > b)
+		return a;
+	return b;
+}
+
+void DisplayLine(int maxLength)
+{
+	std::cout << "\t";
+	for (int i = 0; i < maxLength; i++)
+		std::cout << "-";
+}
+
+void DisplaySpaces(int value)
+{
+	for (int i = 0; i < value; i++)
+		std::cout << " ";
+}
+
+void DisplayAccountDetails(std::string FirstName, std::string  LastName, std::string  Email, std::string  Telephone, std::string  CNP, std::string  IDSeries, std::string  IDNumber, std::string customerCountry,
+	std::string customerCity, std::string  customerPostalCode, std::string  customerStreet, std::string customerStreetNumber,
+	std::string DrivingStartDay, std::string  DrivingStartMonth, std::string  DrivingStartYear, std::string  DrivingEndDay,
+	std::string DrivingEndMonth, std::string  DrivingEndYear, std::string Password)
+{
+	int maxLength = INT_MIN;
+	int maxWord = INT_MIN;
+	maxLength = maxim(maxLength, strlen("FirstName") + FirstName.length());
+	maxWord = maxim(maxWord, FirstName.length());
+
+	maxLength = maxim(maxLength, strlen("LastName") + LastName.length());
+	maxWord = maxim(maxWord, LastName.length());
+
+	maxLength = maxim(maxLength, strlen("Email") + Email.length());
+	maxWord = maxim(maxWord, Email.length());
+
+	maxLength = maxim(maxLength, strlen("Telephone") + Telephone.length());
+	maxWord = maxim(maxWord, Telephone.length());
+
+	maxLength = maxim(maxLength, strlen("CNP") + CNP.length());
+	maxWord = maxim(maxWord, CNP.length());
+
+	maxLength = maxim(maxLength, strlen("IDSeries") + IDSeries.length());
+	maxWord = maxim(maxWord, IDSeries.length());
+
+	maxLength = maxim(maxLength, strlen("IDNumber") + IDNumber.length());
+	maxWord = maxim(maxWord, IDNumber.length());
+
+	maxLength = maxim(maxLength, strlen("customerCountry") + customerCountry.length());
+	maxWord = maxim(maxWord, customerCountry.length());
+
+	maxLength = maxim(maxLength, strlen("customerCity") + customerCity.length());
+	maxWord = maxim(maxWord, customerCity.length());
+
+	maxLength = maxim(maxLength, strlen("customerPostalCode") + customerPostalCode.length());
+	maxWord = maxim(maxWord, customerPostalCode.length());
+
+	maxLength = maxim(maxLength, strlen("customerStreetNumber") + customerStreetNumber.length());
+	maxWord = maxim(maxWord, customerStreetNumber.length());
+
+	maxLength = maxim(maxLength, strlen("DrivingStartDay") + DrivingStartDay.length());
+	maxWord = maxim(maxWord, DrivingStartDay.length());
+
+	maxLength = maxim(maxLength, strlen("DrivingStartMonth") + DrivingStartMonth.length());
+	maxWord = maxim(maxWord, DrivingStartMonth.length());
+
+	maxLength = maxim(maxLength, strlen("DrivingStartYear") + DrivingStartYear.length());
+	maxWord = maxim(maxWord, DrivingStartYear.length());
+
+	maxLength = maxim(maxLength, strlen("DrivingEndDay") + DrivingEndDay.length());
+	maxWord = maxim(maxWord, DrivingEndDay.length());
+
+	maxLength = maxim(maxLength, strlen("DrivingEndMonth") + DrivingEndMonth.length());
+	maxWord = maxim(maxWord, DrivingEndMonth.length());
+
+	maxLength = maxim(maxLength, strlen("DrivingEndYear") + DrivingEndYear.length());
+	maxWord = maxim(maxWord, DrivingEndYear.length());
+
+	maxLength = maxim(maxLength, strlen("Password") + Password.length());
+	maxWord = maxim(maxWord, Password.length());
+
+	int value = strlen("DrivingStartMonth");
+	DisplayLine(maxLength+2*maxWord + 1);
+	std::cout << "\n\t| First name";
+	DisplaySpaces(value - strlen("First Name") + maxWord-1);
+	std::cout << FirstName;
+	DisplaySpaces(maxWord - FirstName.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2*maxWord + 1);
+
+	std::cout << "\n\t| Last name";
+	DisplaySpaces(value - strlen("Last Name") + maxWord - 1);
+	std::cout << LastName;
+	DisplaySpaces(maxWord - LastName.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Email";
+	DisplaySpaces(value - strlen("Email") + maxWord - 1);
+	std::cout << Email;
+	DisplaySpaces(maxWord - Email.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Telephone";
+	DisplaySpaces(value - strlen("Telephone") + maxWord - 1);
+	std::cout << Telephone;
+	DisplaySpaces(maxWord - Telephone.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| CNP";
+	DisplaySpaces(value - strlen("CNP") + maxWord - 1);
+	std::cout << CNP;
+	DisplaySpaces(maxWord - CNP.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| ID Series";
+	DisplaySpaces(value - strlen("ID Series") + maxWord - 1);
+	std::cout << IDSeries;
+	DisplaySpaces(maxWord - IDSeries.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| ID Number";
+	DisplaySpaces(value - strlen("ID Number") + maxWord - 1);
+	std::cout << IDNumber;
+	DisplaySpaces(maxWord - IDNumber.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| City";
+	DisplaySpaces(value - strlen("City") + maxWord - 1);
+	std::cout << customerCity;
+	DisplaySpaces(maxWord - customerCity.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Country";
+	DisplaySpaces(value - strlen("Country") + maxWord - 1);
+	std::cout << customerCountry;
+	DisplaySpaces(maxWord - customerCountry.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Postal code";
+	DisplaySpaces(value - strlen("Postal Code") + maxWord - 1);
+	std::cout << customerPostalCode;
+	DisplaySpaces(maxWord - customerPostalCode.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Street number";
+	DisplaySpaces(value - strlen("Street Number") + maxWord - 1);
+	std::cout << customerStreetNumber;
+	DisplaySpaces(maxWord - customerStreetNumber.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Driving Start Day";
+	DisplaySpaces(value - strlen("Driving Start Day") + maxWord - 1);
+	std::cout << DrivingStartDay;
+	DisplaySpaces(maxWord - DrivingStartDay.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Driving Start Month";
+	DisplaySpaces(value - strlen("Driving Start Month") + maxWord - 1);
+	std::cout << DrivingStartMonth;
+	DisplaySpaces(maxWord - DrivingStartMonth.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Driving Start Year";
+	DisplaySpaces(value - strlen("Driving Start Year") + maxWord - 1);
+	std::cout << DrivingStartYear;
+	DisplaySpaces(maxWord - DrivingStartYear.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Driving End Day";
+	DisplaySpaces(value - strlen("Driving End Day") + maxWord - 1);
+	std::cout << DrivingEndDay;
+	DisplaySpaces(maxWord - DrivingEndDay.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Driving End Month";
+	DisplaySpaces(value - strlen("Driving End Month") + maxWord - 1);
+	std::cout << DrivingEndMonth;
+	DisplaySpaces(maxWord - DrivingEndMonth.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Driving End Year";
+	DisplaySpaces(value - strlen("Driving End Year") + maxWord - 1);
+	std::cout << DrivingEndYear;
+	DisplaySpaces(maxWord - DrivingEndYear.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
+
+	std::cout << "\n\t| Password";
+	DisplaySpaces(value - strlen("Password") + maxWord - 1);
+	std::cout << Password;
+	DisplaySpaces(maxWord - Password.length() + 1);
+	std::cout << "\n";
+	DisplayLine(maxLength + 2 * maxWord + 1);
 }

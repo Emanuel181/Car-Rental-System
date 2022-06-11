@@ -149,6 +149,12 @@
     <ClInclude Include="Validation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ReadUserData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountStuff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="proiect_cpp.rc">
@@ -157,5 +163,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ClientsDatabase.txt" />
+    <Text Include="Accounts.txt" />
   </ItemGroup>
 </Project>
