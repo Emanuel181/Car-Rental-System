@@ -157,5 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ClientsDatabase.txt" />
+    <Text Include="admin.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

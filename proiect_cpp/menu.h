@@ -1,46 +1,91 @@
 #pragma once
+#include <iostream>
+#include <fstream>
 #include <string>
 #include "SystemClass.h"
 #include "AdministratorOptions.h"
 
 
-void MainMenu(SystemClass mainOBJ)
+bool EnterPassword()
+{
+	std::ifstream fin("admin.txt");
+	Sleep(0.16); system("cls");
+	std::cout << "\tIntroduceti parola de admin: ";
+	std::string password; std::cin >> password;
+	std::string passwordFromDb; fin >> passwordFromDb;
+
+	if (password == passwordFromDb)
+	{
+		fin.close();
+		return 1;
+	}
+
+	fin.close();
+	return 0;
+}
+
+
+void DisplayOptions()
 {
 	std::cout << "\t[1] Administrator\n";
 	std::cout << "\t[2] Company registration\n";
 	std::cout << "\t[3] Client\n";
 	std::cout << "\t[4] Exit the app\n";
-	std::cout << "\tYour option:\n";
-	std::string input;
+	std::cout << "\tYour option: ";
+}
+
+
+void MainMenu(SystemClass mainOBJ)
+{
 	while (1)
 	{
-		std::cout << "\t";
+		DisplayOptions();
+		std::string input;
+
 		std::cin >> input;
 		std::cin.ignore();
 		if (InputValid(input))
 		{
 			int option = stoi(input);
-			if (option <= 4) {
+			if (option <= 4)
+			{
 				if (option == 1)
 				{
-					AdminOptions(mainOBJ);
-					break;
+					int cnt = 0;
+					while (cnt < 3)
+					{
+						int rez = EnterPassword();
+						if (rez == 1) break;
+						std::cout << "\tParola gresita, mai aveti " << 3 - cnt - 1 << " incercari. \n\tReinitiam logarea ";
+						Sleep(2000);
+						++cnt;
+					}
+
+					if(cnt < 3) AdminOptions(mainOBJ);
+					else
+					{
+						std::cout << "\n\tPrea multe incercari! Revenim la meniul principal...";
+						Sleep(2500); system("cls");
+						MainMenu(mainOBJ);
+
+						break;
+					}
 				}
-				if (option == 2)
+				else if (option == 2)
 				{
 					FirmRegistration(mainOBJ);
 					break;
 				}
-				if (option == 3)
+				else if (option == 3)
 				{
 					ClientOptions(mainOBJ);
 					break;
 				}
-				if (option == 4)
+				else if (option == 4)
 				{
 					Sleep(0.016);
 					system("cls");
-					std::cout << "You left the app. Have a nice day.\n";
+					std::cout << "\tYou left the app. Have a nice day.\n";
 					exit(0);
 				}
 			}
