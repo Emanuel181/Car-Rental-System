@@ -19,7 +19,7 @@ void ConfirmCreateAccount(bool& valid)
 	std::string input;
 	while (1)
 	{
-		std::cout << "\t\t";
+		std::cout << "\t";
 		std::cin >> input;
 		std::cin.ignore();
 		if (InputValid(input))
@@ -76,7 +76,6 @@ void ClientOptions(SystemClass mainOBJ)
 					Sleep(0.016);
 					system("cls");
 					AccountValidation();
-
 					break;
 				}
 				if (option == 2)
@@ -179,7 +178,7 @@ void LoginIntoAccount(std::string& customerEmailAddress) {
 		std::cin >> password;
 		std::cout << "\t";
 		std::ifstream fin("Accounts.txt");
-		char* line = new char[300];
+		char* line = new char[500];
 		customerEmailAddress = "";
 		std::string customerPassword = "";
 		bool valid = false;
@@ -187,7 +186,8 @@ void LoginIntoAccount(std::string& customerEmailAddress) {
 		{
 			char* p = strtok(line, ";");
 			int count = 0;
-			customerEmailAddress = "", customerPassword = "";
+			customerEmailAddress = "";
+			customerPassword = "";
 			while (p)
 			{
 				if (count == 2)
@@ -207,18 +207,21 @@ void LoginIntoAccount(std::string& customerEmailAddress) {
 					}
 				}
 				count++;
-				p = strtok(nullptr, ";");
+				p = strtok(NULL, ";");
 			}
+			line = new char[500];
 		}
 		if (valid == true)
 			break;
 		else
 		{
+			delete[] line;
 			Sleep(0.2);
 			system("cls");
 			std::cout << "\n\tTry again.Your password is incorrect.\n";
 		}
 	}
+
 }
 
 int maxim(int a, int b)

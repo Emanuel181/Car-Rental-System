@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <fstream>
 
 
 bool InputValid(std::string input)
@@ -50,6 +51,7 @@ bool EmailValidation(std::string input)
 	return true;
 }
 
+
 bool IDCardSeriesValid(std::string input)
 {
 	for (int i = 0; i < input.length(); i++)
@@ -61,6 +63,7 @@ bool IDCardSeriesValid(std::string input)
 	}
 	return true;
 }
+
 
 bool RentalHourValidation(std::string input)
 {
@@ -75,6 +78,7 @@ bool RentalHourValidation(std::string input)
 	return true;
 }
 
+
 bool RentalMinuteValidation(std::string input)
 {
 	for (int i = 0; i < input.size(); i++)
@@ -85,5 +89,46 @@ bool RentalMinuteValidation(std::string input)
 	int numar = stoi(input);
 	if (numar != 0 && numar != 30)
 		return false;
+	return true;
+}
+
+
+bool AppearOnce(std::string name,std::string email,int value)
+{
+	std::ifstream fin("Accounts.txt");
+	char* line = new char[500];
+	std::string emailAddress="", firstName="";
+	bool valid = false;
+	while (fin >> line)
+	{
+		char* p = strtok(line, ";");
+		int count = 0;
+		emailAddress = "";
+		while (p)
+		{
+			if (count == 0)
+			{
+				firstName = p;
+			}
+			if (count == 2)
+			{
+				emailAddress = p;
+			}
+			if (firstName != "" && firstName == name && value==0)
+			{
+				delete[] line;
+				return false;
+			}
+			if (emailAddress != "" && emailAddress == email && value==2)
+			{
+				delete[] line;
+				return false;
+			}
+			count++;
+			p = strtok(NULL, ";");
+		}
+		line = new char[500];
+	}
+	delete[] line;
 	return true;
 }

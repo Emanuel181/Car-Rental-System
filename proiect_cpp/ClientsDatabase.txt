@@ -1,0 +1,2 @@
+pop@yahoo.com;brasov;brasov;3;5;2022;8;00;4;5;2022;17;30
+gpop@yahoo.com;Bistrita;Constanta;5;6;2023;14;30;6;6;2023;15;00

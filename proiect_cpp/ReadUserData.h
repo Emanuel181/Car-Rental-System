@@ -6,7 +6,18 @@ void ReadPersonalData(std::string& FirstName, std::string& LastName, std::string
 	std::cout << "\tPersonal data\n\n";
 
 	std::cout << "\tFirst name: ";
-	std::getline(std::cin, FirstName);
+	while (1)
+	{
+		std::getline(std::cin, FirstName);
+		std::cout << "\n\t";
+		if (AppearOnce(FirstName, Email,0) == true)
+			break;
+		else
+		{
+			std::cout << "The name introduced already exists.\n";
+			std::cout << "\tTry again.\n\n\t";
+		}
+	}
 	std::cout << "\n";
 
 	std::cout << "\tLast name: ";
@@ -19,7 +30,7 @@ void ReadPersonalData(std::string& FirstName, std::string& LastName, std::string
 		std::cin >> Email;
 		std::cout << "\n\t";
 		std::cin.ignore();
-		if (EmailValidation(Email) == true)
+		if (EmailValidation(Email) == true && AppearOnce(FirstName,Email,2)==true)
 			break;
 		else
 		{
@@ -514,7 +525,7 @@ void RentalPeriod(std::string customerEmailAddress)
 
 	clientDetails += customerEmailAddress + ";" + startRent + ";" + stopRent + ";";
 	clientDetails += StartDay + ";" + StartMonth + ";" + StartYear + ";" + StartHour + ";" + StartMinute + ";";
-	clientDetails + EndDay + ";" + EndMonth + ";" + EndYear + ";" + EndHour + ";" + EndMinute;
+	clientDetails += EndDay + ";" + EndMonth + ";" + EndYear + ";" + EndHour + ";" + EndMinute;
 
 	std::ofstream fileOutput("ClientsDatabase.txt", std::ios_base::app | std::ios_base::out);
 	fileOutput << clientDetails << "\n";

@@ -38,6 +38,7 @@ void ReadDrivingLicenseDetails(std::string&, std::string&, std::string&, std::st
 
 
 //Account stuff
+bool AppearOnce(std::string,std::string,int);
 void LoginIntoAccount(std::string&);
 void CreateAnAccount();
 
