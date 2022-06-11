@@ -13,7 +13,7 @@ bool InputValid(std::string input)
 }
 
 
-bool isChar(char c)
+bool isChar(const char c)
 {
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }

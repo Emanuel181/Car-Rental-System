@@ -160,6 +160,7 @@
     <ClCompile Include="SystemClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AccountStuff.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="CarReview.h" />
     <ClInclude Include="ClientOptions.h" />
@@ -178,6 +179,7 @@
     <ClInclude Include="LocationAddress.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Prototypes.h" />
+    <ClInclude Include="ReadUserData.h" />
     <ClInclude Include="RentalEndDate.h" />
     <ClInclude Include="RentalSchedule.h" />
     <ClInclude Include="RentalStartDate.h" />
@@ -190,6 +192,7 @@
     <ResourceCompile Include="proiect_cpp.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Accounts.txt" />
     <Text Include="ClientsDatabase.txt" />
     <Text Include="admin.txt" />
   </ItemGroup>

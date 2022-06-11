@@ -1,2 +1,0 @@
-Alexandru;Andrita;alexandru@gmail.com;0733672757;5020412080034;ZV;123456;Romania;Brasov;321200;DeMijlco;10;10;12;2002;11;12;2002;123456;alexandru;Brasov;Brasov
-Emanuel;Rusu;emanuel@gmail.com;0734567890;5020422080033;ZB;12390;Romania;Stei;321231;Decebal;12;12;3;2003;13;4;2003;12390;emanuel;Stei;Stei
