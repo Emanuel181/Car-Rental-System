@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "SystemClass.h"
+#include "CompanyBranches.h"
 #include <iostream>
 #include <fstream>;
 #include <vector>
@@ -9,10 +10,12 @@
 
 void ViewCompanies(SystemClass mainOBJ)
 {
-	/*for (const auto& company : mainOBJ.GetCompanyBranches())
+	int i = 0;
+	for (const auto& company : mainOBJ.GetCompanyBranches())
 	{
-		std::cout << company;
-	}*/
+		std::cout << company[i++].GetBranchName() << '\n';
+	}
+	system("pause");
 }
 
 
@@ -31,22 +34,29 @@ void DeleteBranch(SystemClass mainOBJ)
 	std::cout << "\tNumele companiei pe care vrei sa il stergi: ";
 	std::string numeCompanie; getline(std::cin, numeCompanie);
 
-	std::vector<CompanyBranches>::iterator it;
-	/*it = mainOBJ.GetCompanyBranches().begin();
-	bool ok = 0;
+	std::vector < std::vector <CompanyBranches> >::iterator it;
+	it = mainOBJ.GetCompanyBranches().begin();
 
-	while(it != mainOBJ.GetCompanyBranches().end())
+	bool ok = 0;
+	int i = 0;
+
+	while (it != mainOBJ.GetCompanyBranches().end())
 	{
-		if (it->GetBranchName() == numeCompanie)
+		ok = 0;
+
+		for (auto company : *it)
 		{
-			it = mainOBJ.GetCompanyBranches().erase(it);
-			ok = 1;
+			if (company.GetBranchName() == numeCompanie) {ok = 1; break;}
 		}
+
+		if(ok == 1)it = mainOBJ.GetCompanyBranches().erase(it);
+
+		++it;
 	}
 
 	if (ok) std::cout << "\tCompanie eliminata";
 
-	else std::cout << "\tNu am gasit compania cu acest nume";*/
+	else std::cout << "\tNu am gasit compania cu acest nume";
 }
 
 
