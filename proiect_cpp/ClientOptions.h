@@ -75,7 +75,7 @@ void ClientOptions(SystemClass mainOBJ)
 				{
 					Sleep(0.016);
 					system("cls");
-					AccountValidation();
+					AccountValidation(mainOBJ);
 					break;
 				}
 				if (option == 2)
@@ -101,7 +101,7 @@ void ClientOptions(SystemClass mainOBJ)
 }
 
 
-void AccountValidation() {
+void AccountValidation(SystemClass mainOBJ) {
 	Sleep(0.016);
 	system("cls");
 	std::cout << "\t[1] Log in\n";
@@ -123,7 +123,7 @@ void AccountValidation() {
 					Sleep(0.2);
 					system("cls");
 					std::string customerEmailAddress = "";
-					LoginIntoAccount(customerEmailAddress);
+					LoginIntoAccount(customerEmailAddress,mainOBJ);
 					std::cout << "\n\tRedirecting to rental page...";
 					Sleep(2000);
 					system("cls");
@@ -135,14 +135,14 @@ void AccountValidation() {
 				{
 					Sleep(0.2);
 					system("cls");
-					CreateAnAccount();
+					CreateAnAccount(mainOBJ);
 					Sleep(0.2);
 					system("cls");
 					std::cout << "\n\tRedirecting to login page...";
 					Sleep(2000);
 					system("cls");
 					std::string customerEmailAddress = "";
-					LoginIntoAccount(customerEmailAddress);
+					LoginIntoAccount(customerEmailAddress,mainOBJ);
 					std::cout << "\n\tRedirecting to rental page...";
 					Sleep(2000);
 					system("cls");
@@ -166,7 +166,7 @@ void AccountValidation() {
 }
 
 
-void LoginIntoAccount(std::string& customerEmailAddress) {
+void LoginIntoAccount(std::string& customerEmailAddress,SystemClass mainOBJ) {
 	std::string email = "", password = "";
 	std::cout << "\tPlease enter the email address:\n";
 	std::cout << "\t";

@@ -21,10 +21,10 @@ void Registrate();
 
 //Client stuff
 void ClientOptions(SystemClass);
-void AccountValidation();
+void AccountValidation(SystemClass);
 void RentalPeriod(std::string);
 void ReadCustomerPassword(std::string&);
-void ReadRentalDetails(std::string&, std::string&);
+void ReadRentalDetails(std::string&, std::string&,std::string&);
 void DisplayAccountDetails(std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string);
 void DisplayLine(int);
 void DisplaySpaces(int);
@@ -39,8 +39,8 @@ void ReadDrivingLicenseDetails(std::string&, std::string&, std::string&, std::st
 
 //Account stuff
 bool AppearOnce(std::string,std::string,int);
-void LoginIntoAccount(std::string&);
-void CreateAnAccount();
+void LoginIntoAccount(std::string&,SystemClass);
+void CreateAnAccount(SystemClass);
 
 
 //Checking

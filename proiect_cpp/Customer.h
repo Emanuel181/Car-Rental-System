@@ -17,12 +17,12 @@ private:
     RentalSchedule m_customerRentalSchedule;
 
 public:
-    Customer(IdentificationInfos, CustomerHomeAdress, DrivingLicense, DateOfBirth, RentalSchedule);
+    Customer(IdentificationInfos, CustomerHomeAdress, DrivingLicense, RentalSchedule);
     Customer();
     IdentificationInfos GetCustomerIdentificationInfos()const;
     CustomerHomeAdress GetCustomerHomeAdress()const;
     DrivingLicense GetCustomerDrivingLicense()const;
-    DateOfBirth GetCustomerDateOfBirth()const;
+    //DateOfBirth GetCustomerDateOfBirth()const;
     RentalSchedule GetCustomerRentalSchedule()const;
 };
 

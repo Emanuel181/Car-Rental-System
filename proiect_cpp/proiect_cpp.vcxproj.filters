@@ -166,5 +166,8 @@
     <Text Include="admin.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="Accounts.txt" />
+    <Text Include="Branches.txt" />
+    <Text Include="Cars.txt" />
   </ItemGroup>
 </Project>

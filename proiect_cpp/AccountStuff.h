@@ -1,7 +1,7 @@
 #pragma once
 
 
-void CreateAnAccount() {
+void CreateAnAccount(SystemClass mainOBJ) {
 	std::string customerCountry, customerCity, customerPostalCode, customerStreet, customerStreetNumber;
 	std::string FirstName, LastName, Email, Telephone, CNP, IDSeries, IDNumber, Mark;
 	std::string DrivingStartDay, DrivingStartMonth, DrivingStartYear, DrivingEndDay, DrivingEndMonth, DrivingEndYear;

@@ -1,12 +1,12 @@
 #include "Customer.h"
 
 
-Customer::Customer(IdentificationInfos identificationInfos, CustomerHomeAdress customerHomeAdress, DrivingLicense customerDrivingLicense,DateOfBirth customerDateOfBirth,RentalSchedule customerRentalSchedule)
+Customer::Customer(IdentificationInfos identificationInfos, CustomerHomeAdress customerHomeAdress, DrivingLicense customerDrivingLicense,RentalSchedule customerRentalSchedule)
 {
 	m_identificationInfos = identificationInfos;
 	m_customerHomeAddress = customerHomeAdress;
 	m_customerDrivingLicense = customerDrivingLicense;
-	m_customerDateOfBirth = customerDateOfBirth;
+	//m_customerDateOfBirth = customerDateOfBirth;
 	m_customerRentalSchedule = customerRentalSchedule;
 }
 
@@ -44,7 +44,7 @@ CustomerHomeAdress Customer::GetCustomerHomeAdress()const { return m_customerHom
 DrivingLicense Customer::GetCustomerDrivingLicense()const { return m_customerDrivingLicense; }
 
 
-DateOfBirth Customer::GetCustomerDateOfBirth()const { return m_customerDateOfBirth; }
+//DateOfBirth Customer::GetCustomerDateOfBirth()const { return m_customerDateOfBirth; }
 
 
 RentalSchedule Customer::GetCustomerRentalSchedule()const { return m_customerRentalSchedule; }

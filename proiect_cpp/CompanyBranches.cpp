@@ -83,3 +83,15 @@ std::string CompanyBranches::GetAdministratorOBS() const {return m_administrator
 
 //-----------------------------------------------------------------------------------------------
 
+
+void CompanyBranches::setCarList(std::vector<Car>arrCars)
+{
+    m_branchCars = arrCars;
+}
+
+
+void CompanyBranches::setCustomerList(std::vector<Customer>arrCustomers)
+{
+    m_branchCustomers = arrCustomers;
+}
+

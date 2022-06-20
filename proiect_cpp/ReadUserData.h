@@ -497,9 +497,13 @@ void ReadHomeDetails(std::string& customerCountry, std::string& customerCity, st
 }
 
 
-void ReadRentalDetails(std::string& startRent, std::string& stopRent)
+void ReadRentalDetails(std::string& startRent, std::string& stopRent,std::string& companyName)
 {
 	std::cout << "\tRental details\n\n";
+
+	std::cout << "\tIntroduce the name of the branch: ";
+	std::getline(std::cin, companyName);
+	std::cout << "\n";
 
 	std::cout << "\tIntroduce the city from where you want to rent the car: ";
 	std::getline(std::cin, startRent);
@@ -515,17 +519,22 @@ void RentalPeriod(std::string customerEmailAddress)
 {
 	std::string StartDay, StartMonth, StartYear, StartHour, StartMinute;
 	std::string EndDay, EndMonth, EndYear, EndHour, EndMinute;
-	std::string startRent, stopRent;
+	std::string startRent, stopRent, companyName;
 
-	ReadRentalDetails(startRent,stopRent);
+	ReadRentalDetails(startRent,stopRent,companyName);
 	ReadStartRentalDetails(StartDay, StartMonth, StartYear, StartHour, StartMinute);
 	ReadStopRentalDetails(EndDay, EndMonth, EndYear, EndHour, EndMinute, StartDay, StartMonth, StartYear);
 	
 	std::string clientDetails;
 
+	std::ofstream fout;
+	fout.open(companyName + ".txt", std::ios::app);
+	fout << customerEmailAddress<<"\n";
+	fout.close();
+
 	clientDetails += customerEmailAddress + ";" + startRent + ";" + stopRent + ";";
 	clientDetails += StartDay + ";" + StartMonth + ";" + StartYear + ";" + StartHour + ";" + StartMinute + ";";
-	clientDetails += EndDay + ";" + EndMonth + ";" + EndYear + ";" + EndHour + ";" + EndMinute;
+	clientDetails += EndDay + ";" + EndMonth + ";" + EndYear + ";" + EndHour + ";" + EndMinute +";" +companyName;
 
 	std::ofstream fileOutput("ClientsDatabase.txt", std::ios_base::app | std::ios_base::out);
 	fileOutput << clientDetails << "\n";

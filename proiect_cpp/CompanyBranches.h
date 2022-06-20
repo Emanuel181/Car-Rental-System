@@ -33,6 +33,8 @@ public:
     LocationAddress GetLocationAddress() const;
     std::vector <Car> GetBranchCars() const;
     ContactClass GetContactClass() const;
+    void setCarList(std::vector<Car>);
+    void setCustomerList(std::vector<Customer>);
     friend std::ostream& operator << (std::ostream&, const CompanyBranches&);
 };
 
