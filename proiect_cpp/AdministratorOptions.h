@@ -9,10 +9,10 @@
 
 void ViewCompanies(SystemClass mainOBJ)
 {
-	for (const auto& company : mainOBJ.GetCompanyBranches())
+	/*for (const auto& company : mainOBJ.GetCompanyBranches())
 	{
 		std::cout << company;
-	}
+	}*/
 }
 
 
@@ -32,7 +32,7 @@ void DeleteBranch(SystemClass mainOBJ)
 	std::string numeCompanie; getline(std::cin, numeCompanie);
 
 	std::vector<CompanyBranches>::iterator it;
-	it = mainOBJ.GetCompanyBranches().begin();
+	/*it = mainOBJ.GetCompanyBranches().begin();
 	bool ok = 0;
 
 	while(it != mainOBJ.GetCompanyBranches().end())
@@ -46,7 +46,7 @@ void DeleteBranch(SystemClass mainOBJ)
 
 	if (ok) std::cout << "\tCompanie eliminata";
 
-	else std::cout << "\tNu am gasit compania cu acest nume";
+	else std::cout << "\tNu am gasit compania cu acest nume";*/
 }
 
 

@@ -9,14 +9,15 @@ std::string SystemClass::m_nameOfHeadCompany;
 std::string SystemClass::GetNameOfHeadCompany() { return m_nameOfHeadCompany; }
 
 
-std::vector <CompanyBranches> SystemClass::GetCompanyBranches()const { return m_companyBranches; }
+std::vector <std::vector <CompanyBranches>> SystemClass::GetCompanyBranches()const { return m_companyBranches; }
 
 
 //-----------------------------------------------------------------------------------------------------------
 
 
-SystemClass::SystemClass(const std::string nameOfHeadCompany, const CompanyBranches obj)
+SystemClass::SystemClass(const static std::string nameOfHeadCompany, std::vector <CompanyBranches> obj)
 {
+
     m_nameOfHeadCompany = nameOfHeadCompany;
     m_companyBranches.push_back(obj);
 }

@@ -6,13 +6,13 @@ class SystemClass
 {
 private:
     static std::string m_nameOfHeadCompany;
-    std::vector <CompanyBranches> m_companyBranches;
+    std::vector < std::vector <CompanyBranches> > m_companyBranches;
 
 public:
     static std::string GetNameOfHeadCompany();
-    std::vector <CompanyBranches> GetCompanyBranches()const;
+    std::vector < std::vector <CompanyBranches> > GetCompanyBranches()const;
     SystemClass();
-    SystemClass(const std::string, const CompanyBranches);
+    SystemClass(const static std::string, std:: vector <CompanyBranches>);
     static void SetNameOfHeadCompany(const std::string);
 };
 
