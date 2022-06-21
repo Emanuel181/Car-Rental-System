@@ -73,12 +73,12 @@ void MainMenu(SystemClass mainOBJ)
 				}
 				else if (option == 2)
 				{
-					FirmRegistration(mainOBJ);
+					FirmRegistration(mainOBJ,branchesList);
 					break;
 				}
 				else if (option == 3)
 				{
-					ClientOptions(mainOBJ);
+					ClientOptions(mainOBJ,branchesList);
 					break;
 				}
 				else if (option == 4)
