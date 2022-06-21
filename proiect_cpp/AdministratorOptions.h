@@ -134,7 +134,7 @@ void AddObservaions(SystemClass mainOBJ)
 }
 
 
-void AdminOptions(SystemClass mainOBJ)
+void AdminOptions(SystemClass mainOBJ,std::vector<std::string>branchesList)
 {
 	while (1)
 	{
@@ -176,7 +176,7 @@ void AdminOptions(SystemClass mainOBJ)
 				else if (option == 5)
 				{
 					Sleep(0.016); system("cls");
-					MainMenu(mainOBJ);
+					MainMenu(mainOBJ,branchesList);
 				}
 			}
 			else

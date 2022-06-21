@@ -61,7 +61,7 @@ void MainMenu(SystemClass mainOBJ,std::vector<std::string>branchesList)
 						++cnt;
 					}
 
-					if(cnt < 3) AdminOptions(mainOBJ);
+					if(cnt < 3) AdminOptions(mainOBJ,branchesList);
 					else
 					{
 						std::cout << "\n\tPrea multe incercari! Revenim la meniul principal...";

@@ -2,7 +2,7 @@
 
 #include <string>
 
-void FirmRegistration(SystemClass mainOBJ)
+void FirmRegistration(SystemClass mainOBJ,std::vector<std::string>branchesList)
 {
 	Sleep(0.016);
 	system("cls");
@@ -31,7 +31,7 @@ void FirmRegistration(SystemClass mainOBJ)
 				{
 					Sleep(0.016);
 					system("cls");
-					MainMenu(mainOBJ);
+					MainMenu(mainOBJ,branchesList);
 					break;
 				}
 			}

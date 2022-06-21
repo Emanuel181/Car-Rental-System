@@ -11,12 +11,12 @@ void MainMenu(SystemClass,std::vector<std::string>);
 
 
 //Admin stuff
-void AdminOptions(SystemClass);
+void AdminOptions(SystemClass,std::vector<std::string>);
 void ViewCompanies(SystemClass);
 
 
 //Manager stuff
-void FirmRegistration(SystemClass);
+void FirmRegistration(SystemClass, std::vector<std::string>);
 void Registrate();
 
 
