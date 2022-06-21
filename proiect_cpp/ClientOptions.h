@@ -75,7 +75,9 @@ void ClientOptions(SystemClass mainOBJ,std::vector<std::string>branchesList)
 				{
 					Sleep(0.016);
 					system("cls");
-					AccountValidation(mainOBJ,branchesList);
+					std::string email = "";
+					AccountValidation(mainOBJ,branchesList,email);
+					RentalProcess(mainOBJ, email);
 					break;
 				}
 				if (option == 2)
@@ -101,7 +103,7 @@ void ClientOptions(SystemClass mainOBJ,std::vector<std::string>branchesList)
 }
 
 
-void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList) {
+void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,std::string& email) {
 	Sleep(0.016);
 	system("cls");
 	std::cout << "\t[1] Log in\n";
@@ -124,11 +126,15 @@ void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList)
 					system("cls");
 					Customer customerObject;
 					LoginIntoAccount(mainOBJ,customerObject);
+					email = customerObject.GetCustomerIdentificationInfos().GetCustomerEmail();
 					std::cout << "\n\tRedirecting to rental page...";
 					Sleep(2000);
 					system("cls");
 					std::cin.ignore();
 					RentalPeriod(customerObject,branchesList);
+					std::cout << "\n\tPlease wait...";
+					Sleep(2000);
+					system("cls");
 					break; 
 				}
 				if (option == 2)
@@ -143,11 +149,15 @@ void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList)
 					system("cls");
 					Customer customerObject;
 					LoginIntoAccount(mainOBJ,customerObject);
+					email = customerObject.GetCustomerIdentificationInfos().GetCustomerEmail();
 					std::cout << "\n\tRedirecting to rental page...";
 					Sleep(2000);
 					system("cls");
 					std::cin.ignore();
 					RentalPeriod(customerObject,branchesList);
+					std::cout << "\n\tPlease wait...";
+					Sleep(2000);
+					system("cls");
 					break;
 				}
 			}
@@ -165,8 +175,80 @@ void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList)
 	}
 }
 
+void GetEmail(std::string& email)
+{
+	std::cout << "\tPlease enter the email address:\n\t";
+	std::cin >> email;
+}
 
-void LoginIntoAccount(SystemClass mainOBJ,Customer& customerObject) {
+
+void GetPassword(std::string& password)
+{
+	std::cout << "\tPlease enter the password:\n\t";
+	std::cin >> password;
+}
+
+
+void Error(int& count)
+{
+	Sleep(0.2); system("cls");
+	--count;
+	std::cout << "\n\tTry again.Your password is incorrect.\n";
+}
+
+
+void LoginIntoAccount(SystemClass mainOBJ, Customer& customerObject)
+{
+	std::string email, password; email = password = "null";
+
+	GetEmail(email);
+
+	int count = 3;
+	bool valid = false;
+
+	while (1)
+	{
+		if (count > 0) { std::cout << "\n"; GetPassword(password); std::cout << '\n'; }
+		else
+		{
+			count = 3;
+			Sleep(0.2); system("cls");
+			email = password = "null";
+			GetEmail(email);
+			std::cout << "\n"; GetPassword(password);  std::cout << '\n';
+		}
+
+		if (password != "null" && email != "null")
+		{
+			std::vector <std::vector <CompanyBranches>> arr = mainOBJ.GetCompanyBranches();
+
+			for (const auto& it : arr)
+			{
+				for (const auto& company : it)
+				{
+					std::vector<Customer>arrCustomers = company.GetBranchCustomers();
+
+					for (const auto& customer : arrCustomers)
+					{
+						std::string customerEmail = customer.GetCustomerIdentificationInfos().GetCustomerEmail();
+						std::string customerPassword = customer.GetCustomerIdentificationInfos().GetCustomerPassword();
+
+						if (email == customerEmail && password == customerPassword)
+						{
+							customerObject = customer;
+							valid = true;
+							std::cout << "\n\tYour credentials are correct.\n\n";
+							return;
+						}
+					}
+				}
+			}
+		}
+		Error(count);
+	}
+}
+
+/*void LoginIntoAccount(SystemClass mainOBJ, Customer& customerObject) {
 	std::string email = "", password = "";
 	std::cout << "\tPlease enter the email address:\n";
 	std::cout << "\t";
@@ -227,7 +309,7 @@ void LoginIntoAccount(SystemClass mainOBJ,Customer& customerObject) {
 		}
 	}
 
-}
+}*/
 
 int maxim(int a, int b)
 {
@@ -437,4 +519,33 @@ void DisplayAccountDetails(std::string FirstName, std::string  LastName, std::st
 	DisplaySpaces(maxWord - Password.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
+}
+
+
+void RentalProcess(SystemClass mainOBJ,std::string email)
+{
+	std::vector<std::vector<CompanyBranches>>arr = mainOBJ.GetCompanyBranches();
+	std::vector<Car>arrCars;
+	for (int i = 0; i < arr.size(); i++)
+	{
+		for (int j = 0; j < arr[i].size(); j++)
+		{
+			std::vector<Customer>arrCustomers = arr[i][j].GetBranchCustomers();
+			for (int k = 0; k < arrCustomers.size(); k++)
+			{
+				std::string customerEmail = arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerEmail();
+				if (email == customerEmail)
+				{
+					arrCars = arr[i][j].GetBranchCars();
+				}
+			}
+		}
+	}
+
+	std::string carName = "";
+	std::cout << "\tChose one of the following cars:\n";
+	for (int i = 0; i < arrCars.size(); i++)
+	{
+		std::cout << arrCars[i]<<"\n";
+	}
 }

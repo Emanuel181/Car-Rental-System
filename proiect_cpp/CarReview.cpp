@@ -84,3 +84,15 @@ void CarReview::SetCarReview(const std::string Init) { m_review = Init; }
 
 
 //-----------------------------------------------------------------
+
+
+void CarReview::DisplayReviewDetails()
+{
+	std::cout << "\n\tMarks:\n";
+	std::cout << "\tValue: " << std::fixed << std::setprecision(2) << m_value<<"\n";
+	std::cout << "\tCleanliness: " << std::fixed << std::setprecision(2) << m_cleanliness<<"\n";
+	std::cout << "\tComfort: " << std::fixed << std::setprecision(2) << m_comfort<<"\n";
+	std::cout << "\tCar condition: " << std::fixed << std::setprecision(2) << m_carCondition<<"\n";
+	std::cout << "\tOverall mark: " << std::fixed << std::setprecision(2) << m_overallMark<<"\n";
+	std::cout << "\tReview: " << std::fixed << std::setprecision(2) << m_review << "\n";
+}

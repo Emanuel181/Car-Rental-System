@@ -98,7 +98,7 @@ void readDataFromFile(SystemClass& mainOBJ,std::vector<std::string>& branchesLis
                 observations = p;
                 break;
             case 5:
-                numberOfCars = (int)p;
+                numberOfCars = CreateNumber(p);
                 break;
             case 6:
                 overallMark = std::stod(p);
@@ -236,43 +236,46 @@ void readDataFromFile(SystemClass& mainOBJ,std::vector<std::string>& branchesLis
                     type = p;
                     break;
                 case 4:
-                    bhp = (int)p;
+                    bhp = CreateNumber(p);
                     break;
                 case 5:
-                    numberDoors = (int)p;
+                    engineType = p;
                     break;
                 case 6:
-                    numberSeats = (int)p;
+                    numberDoors = CreateNumber(p);
                     break;
                 case 7:
-                    consumption = std::stod(p);
+                    numberSeats = CreateNumber(p);
                     break;
                 case 8:
-                    availability = (bool)p;
+                    consumption = std::stod(p);
                     break;
                 case 9:
-                    pricePerDay = (int)p;
+                    if (p[0] == '0')
+                        availability = true;
+                    else
+                        availability = false;
                     break;
                 case 10:
-                    deposit = (int)p;
+                    pricePerDay = CreateNumber(p);
                     break;
                 case 11:
-                    advancePayment = (int)p;
+                    deposit = CreateNumber(p);
                     break;
                 case 12:
-                    value = std::stod(p);
+                    advancePayment = CreateNumber(p);
                     break;
                 case 13:
-                    cleanliness = std::stod(p);
+                    value = std::stod(p);
                     break;
                 case 14:
-                    comfort = std::stod(p);
+                    cleanliness = std::stod(p);
                     break;
                 case 15:
-                    condition = std::stod(p);
+                    comfort = std::stod(p);
                     break;
                 case 16:
-                    overallMark = std::stod(p);
+                    condition = std::stod(p);
                     break;
                 case 17:
                     overallMark = std::stod(p);

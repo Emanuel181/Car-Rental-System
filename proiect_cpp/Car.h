@@ -28,5 +28,6 @@ public:
 	int GetCarDeposit() const;
 	int GetCarAdvancePayment() const;
 	CarReview GetCarReview() const;
+	friend std::ostream& operator << (std::ostream&, const Car&);
 
 };

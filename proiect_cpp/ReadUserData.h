@@ -501,15 +501,6 @@ void ReadRentalDetails(std::string& startRent, std::string& stopRent,std::string
 {
 	std::cout << "\tRental details\n\n";
 
-	for (int i = 0; i < branchesList.size(); i++)
-	{
-		std::cout << "\t"<<i + 1 << " - " << branchesList[i] << "\n";
-	}
-	std::cout << "\n";
-	std::cout << "\tChoose one of the firms from the above: ";
-	std::getline(std::cin, companyName);
-	std::cout << "\n";
-
 	std::cout << "\tIntroduce the city from where you want to rent the car: ";
 	std::getline(std::cin, startRent);
 	std::cout << "\n";
@@ -529,6 +520,29 @@ void RentalPeriod(Customer customerObject,std::vector<std::string>branchesList)
 	ReadRentalDetails(startRent,stopRent,companyName,branchesList);
 	ReadStartRentalDetails(StartDay, StartMonth, StartYear, StartHour, StartMinute);
 	ReadStopRentalDetails(EndDay, EndMonth, EndYear, EndHour, EndMinute, StartDay, StartMonth, StartYear);
+	
+	std::cout << "\n\tPlease wait...\n";
+	Sleep(2000);
+	system("cls");
+	for (int i = 0; i < branchesList.size(); i++)
+	{
+		std::cout << "\t" << i + 1 << " - " << branchesList[i] << "\n";
+	}
+	
+	while (1)
+	{
+		std::cout << "\n";
+		std::cout << "\tChoose one of the firms from the above: ";
+		std::getline(std::cin, companyName);
+		if (FirmExists(branchesList, companyName) == true)
+			break;
+		else
+		{
+			std::cout << "\n\tThere is no firm with that name.\n";
+			std::cout << "\tTry again.\n";
+		}
+	}
+	
 	
 	std::string clientDetails;
 	std::string clientData;

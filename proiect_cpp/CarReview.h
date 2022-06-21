@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+#include <iomanip>
 #include <string>
 
 class CarReview {
@@ -30,4 +32,6 @@ public:
 	void SetComfort(const double);
 	void SetCarCondition(const double);
 	void SetCarReview(const std::string);
+
+	void DisplayReviewDetails();
 };

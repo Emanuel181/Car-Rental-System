@@ -22,7 +22,7 @@ void Registrate();
 
 //Client stuff
 void ClientOptions(SystemClass,std::vector<std::string>);
-void AccountValidation(SystemClass,std::vector<std::string>);
+void AccountValidation(SystemClass,std::vector<std::string>,std::string&);
 void RentalPeriod(Customer);
 void ReadCustomerPassword(std::string&);
 void ReadRentalDetails(std::string&, std::string&,std::string&);
@@ -44,8 +44,17 @@ void LoginIntoAccount(SystemClass,Customer&);
 void CreateAnAccount(SystemClass);
 
 
+//Rental process
+void RentalProcess(SystemClass, std::string);
+
+
 //Checking
 bool EmailValidation(std::string);
 bool InputValid(std::string);
 bool isChar(const char);
 bool isDigit(const char);
+bool FirmExists(std::vector<std::string>, std::string);
+
+
+//Convert
+int CreateNumber(char*);

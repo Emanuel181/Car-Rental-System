@@ -118,3 +118,25 @@ bool AppearOnce(std::string word,SystemClass mainOBJ,int value)
 	}
 	return true;
 }
+
+
+bool FirmExists(std::vector<std::string>branchesList, std::string company)
+{
+	for (int i = 0; i < branchesList.size(); i++)
+	{
+		if (branchesList[i] == company)
+			return true;
+	}
+	return false;
+}
+
+
+int CreateNumber(char* p)
+{
+	int nr = 0;
+	for (int i = 0; i < strlen(p); i++)
+	{
+		nr = nr * 10 + p[i] - '0';
+	}
+	return nr;
+}
