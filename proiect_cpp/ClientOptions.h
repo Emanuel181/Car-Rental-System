@@ -6,6 +6,7 @@
 #include "SystemClass.h"
 #include "ReadUserData.h"
 #include "AccountStuff.h"
+#include "RentedCars.h"
 
 
 void ConfirmCreateAccount(bool& valid)
@@ -58,7 +59,8 @@ void ClientOptions(SystemClass mainOBJ,std::vector<std::string>branchesList)
 	Sleep(0.016);
 	system("cls");
 	std::cout << "\t[1] Rent a car\n";
-	std::cout << "\t[2] Go to main page\n";
+	std::cout << "\t[2] View rented cars\n";
+	std::cout << "\t[3] Go to main page\n";
 	std::cout << "\tYour option:\n";
 	std::string input;
 	while (1)
@@ -69,18 +71,28 @@ void ClientOptions(SystemClass mainOBJ,std::vector<std::string>branchesList)
 		if (InputValid(input))
 		{
 			int option = stoi(input);
+			Customer customer;
 			if (option <= 2)
 			{
 				if (option == 1)
 				{
 					Sleep(0.016);
 					system("cls");
-					std::string email = "";
-					AccountValidation(mainOBJ,branchesList,email);
-					RentalProcess(mainOBJ, email);
+					std::string companyName="";
+					AccountValidation(mainOBJ,branchesList, customer,companyName);
+					RentalProcess(mainOBJ, customer,companyName);
+					system("cls");
+					Sleep(2000);
+					std::cout << "\n\tRedirecting to main page...Please wait...\n";
+					MainMenu(mainOBJ, branchesList);
 					break;
 				}
 				if (option == 2)
+				{
+					ViewRentedCars(mainOBJ,customer,branchesList);
+					break;
+				}
+				if (option == 3)
 				{
 					Sleep(0.016);
 					system("cls");
@@ -103,7 +115,7 @@ void ClientOptions(SystemClass mainOBJ,std::vector<std::string>branchesList)
 }
 
 
-void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,std::string& email) {
+void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,Customer& customer,std::string& companyName) {
 	Sleep(0.016);
 	system("cls");
 	std::cout << "\t[1] Log in\n";
@@ -124,14 +136,14 @@ void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,
 				{
 					Sleep(0.2);
 					system("cls");
-					Customer customerObject;
-					LoginIntoAccount(mainOBJ,customerObject);
-					email = customerObject.GetCustomerIdentificationInfos().GetCustomerEmail();
+					//Customer customerObject;
+					LoginIntoAccount(mainOBJ,customer);
+					//email = customerObject.GetCustomerIdentificationInfos().GetCustomerEmail();
 					std::cout << "\n\tRedirecting to rental page...";
 					Sleep(2000);
 					system("cls");
 					std::cin.ignore();
-					RentalPeriod(customerObject,branchesList);
+					RentalPeriod(customer,branchesList,companyName);
 					std::cout << "\n\tPlease wait...";
 					Sleep(2000);
 					system("cls");
@@ -147,14 +159,14 @@ void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,
 					std::cout << "\n\tRedirecting to login page...";
 					Sleep(2000);
 					system("cls");
-					Customer customerObject;
-					LoginIntoAccount(mainOBJ,customerObject);
-					email = customerObject.GetCustomerIdentificationInfos().GetCustomerEmail();
+					//Customer customerObject;
+					LoginIntoAccount(mainOBJ,customer);
+					//email = customerObject.GetCustomerIdentificationInfos().GetCustomerEmail();
 					std::cout << "\n\tRedirecting to rental page...";
 					Sleep(2000);
 					system("cls");
 					std::cin.ignore();
-					RentalPeriod(customerObject,branchesList);
+					RentalPeriod(customer,branchesList,companyName);
 					std::cout << "\n\tPlease wait...";
 					Sleep(2000);
 					system("cls");
@@ -247,69 +259,6 @@ void LoginIntoAccount(SystemClass mainOBJ, Customer& customerObject)
 		Error(count);
 	}
 }
-
-/*void LoginIntoAccount(SystemClass mainOBJ, Customer& customerObject) {
-	std::string email = "", password = "";
-	std::cout << "\tPlease enter the email address:\n";
-	std::cout << "\t";
-	std::cin >> email;
-	int count = 3;
-	while (1)
-	{
-		bool valid = false;
-
-		if (count > 0) {
-			std::cout << "\n\tPlease enter the password:\n";
-			std::cout << "\t";
-			std::cin >> password;
-			std::cout << "\t";
-		}
-		else {
-			count = 3;
-			Sleep(0.2);
-			system("cls");
-			LoginIntoAccount(mainOBJ, customerObject);
-		}
-
-		if (password != "" && email != "") {
-			std::vector<std::vector<CompanyBranches>>arr = mainOBJ.GetCompanyBranches();
-			for (int i = 0; i < arr.size(); i++)
-			{
-				for (int j = 0; j < arr[i].size(); j++)
-				{
-					std::vector<Customer>arrCustomers = arr[i][j].GetBranchCustomers();
-					for (int k = 0; k < arrCustomers.size(); k++)
-					{
-						std::string customerEmail = arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerEmail();
-						std::string customerPassword = arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerPassword();
-						if (email == customerEmail && password == customerPassword)
-						{
-							customerObject = arrCustomers[k];
-							valid = true;
-							std::cout << "\n\tYour credentials are correct.\n\n";
-							break;
-						}
-					}
-				}
-			}
-			if (valid == true)
-				return;
-		}
-
-		if (valid == true)
-			break;
-		else 
-		{
-			Sleep(0.2);
-			system("cls");
-			count--;
-			std::cout << "\n\tTry again.Your password is incorrect.\n";
-			password = "";
-			email = "";
-		}
-	}
-
-}*/
 
 int maxim(int a, int b)
 {
@@ -522,7 +471,7 @@ void DisplayAccountDetails(std::string FirstName, std::string  LastName, std::st
 }
 
 
-void RentalProcess(SystemClass mainOBJ,std::string email)
+void RentalProcess(SystemClass mainOBJ,Customer customer,std::string companyName)
 {
 	std::vector<std::vector<CompanyBranches>>arr = mainOBJ.GetCompanyBranches();
 	std::vector<Car>arrCars;
@@ -530,14 +479,11 @@ void RentalProcess(SystemClass mainOBJ,std::string email)
 	{
 		for (int j = 0; j < arr[i].size(); j++)
 		{
-			std::vector<Customer>arrCustomers = arr[i][j].GetBranchCustomers();
-			for (int k = 0; k < arrCustomers.size(); k++)
+			std::string name = arr[i][j].GetBranchName();
+			if (name == companyName)
 			{
-				std::string customerEmail = arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerEmail();
-				if (email == customerEmail)
-				{
-					arrCars = arr[i][j].GetBranchCars();
-				}
+				arrCars = arr[i][j].GetBranchCars();
+				break;
 			}
 		}
 	}
@@ -546,6 +492,51 @@ void RentalProcess(SystemClass mainOBJ,std::string email)
 	std::cout << "\tChose one of the following cars:\n";
 	for (int i = 0; i < arrCars.size(); i++)
 	{
-		std::cout << arrCars[i]<<"\n";
+		std::cout << "\tCar number "<<i+1<<":\n "<<arrCars[i] << "\n\n";
 	}
+	std::cout << "\tIntroduce the number of the car you would like to rent:\n";
+	std::string userInput = "";
+	int option = 0;
+	while (1)
+	{
+		std::cout << "\t";
+		std::cin >> userInput;
+		if (containsOnlyDigits(userInput) == true)
+		{
+			option = std::stoi(userInput);
+			if (option > arrCars.size())
+			{
+				std::cout << "\n";
+				std::cout << "\tThe option introduced is not valid.\n";
+				std::cout << "\tTry again.\n";
+			}
+			else
+			{
+				break;
+			}
+		}
+		else
+		{
+			std::cout << "\n";
+			std::cout << "\tThe option introduced is not valid.\n";
+			std::cout << "\tTry again.\n";
+		}
+	}
+	option--;
+	arrCars[option].SetCarAvailability(false);
+	std::string carDetails = customer.GetCustomerIdentificationInfos().GetCustomerFirstName() + ";" + customer.GetCustomerIdentificationInfos().GetCustomerLastName() + ";";
+	carDetails += companyName + ";";
+	carDetails += arrCars[option].GetCarMake() + ";" + arrCars[option].GetCarColor() + ";" + arrCars[option].GetCarTransmission() + ";" + arrCars[option].GetCarType()
+		+ ";" + arrCars[option].GetCarEngineType() + ";" + std::to_string(arrCars[option].GetCarHorsepower()) + ";" + std::to_string(arrCars[option].GetCarNumberOfDoors()) + ";" + std::to_string(arrCars[option].GetCarNumberOfSeats())
+		+ ";" + std::to_string(arrCars[option].GetCarConsumption()) + ";" + std::to_string(arrCars[option].GetCarAvailability()) + ";"
+		+ std::to_string(arrCars[option].GetCarPrice()) + ";" + std::to_string(arrCars[option].GetCarDeposit()) + ";" + std::to_string(arrCars[option].GetCarAdvancePayment())
+		+ ";" + std::to_string(arrCars[option].GetCarReview().GetCarValue()) + ";" + std::to_string(arrCars[option].GetCarReview().GetCarCleanliness()) + ";"
+		+ std::to_string(arrCars[option].GetCarReview().GetCarComfort()) + ";" + std::to_string(arrCars[option].GetCarReview().GetCarCondition()) + ";"
+		+ std::to_string(arrCars[option].GetCarReview().GetCarOverallMark()) + ";" + arrCars[option].GetCarReview().GetCarReview();
+
+	std::ofstream rentedCarsFile;
+	rentedCarsFile.open("RentedCars.txt",std::ios::app);
+	rentedCarsFile << carDetails << "\n";
+	rentedCarsFile.close();
+
 }

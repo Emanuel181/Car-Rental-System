@@ -183,6 +183,7 @@
     <ClInclude Include="RentalEndDate.h" />
     <ClInclude Include="RentalSchedule.h" />
     <ClInclude Include="RentalStartDate.h" />
+    <ClInclude Include="RentedCars.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="StartTime.h" />
     <ClInclude Include="SystemClass.h" />
@@ -197,6 +198,7 @@
     <Text Include="Cars.txt" />
     <Text Include="ClientsDatabase.txt" />
     <Text Include="admin.txt" />
+    <Text Include="RentedCars.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

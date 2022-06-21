@@ -11,6 +11,7 @@ Car::Car(const std::string make, const std::string color, const std::string tran
 	m_engineType = engineType;
 	m_numberDoors = numberDoors;
 	m_numberSeats = numberSeats;
+	m_consumption = consumption;
 	m_availability = availability;
 	m_pricePerDay = pricePerDay;
 	m_deposit = deposit;
@@ -21,17 +22,18 @@ Car::Car(const std::string make, const std::string color, const std::string tran
 
 Car::Car()
 {
-	m_make = "Dacia";
-	m_color = "black";
-	m_transmission = "manual";
-	m_type = "economy";
-	m_engineType = "petrol";
-	m_bhp = 100;
-	m_numberDoors = 5;
-	m_numberSeats = 5;
+	m_make = "";
+	m_color = "";
+	m_transmission = "";
+	m_type = "";
+	m_engineType = "";
+	m_bhp = 0;
+	m_numberDoors = 0;
+	m_numberSeats = 0;
+	m_consumption = 0.0;
 	m_availability = true;
-	m_pricePerDay = 100;
-	m_deposit = 500;
+	m_pricePerDay = 0;
+	m_deposit = 0;
 	m_advancePayment = 0;
 	m_carReview.SetCarCondition(0.0);
 	m_carReview.SetCleanliness(0.0);
@@ -112,11 +114,23 @@ CarReview Car::GetCarReview() const {
 }
 
 
+void Car::SetCarAvailability(bool value)
+{
+	m_availability = value;
+}
+
+
 std::ostream& operator << (std::ostream& COUT, const Car& p)
 {
 	COUT << "\tMake: " << p.m_make<<"\n\tColor: "<<p.m_color<<"\n\tTransmission: "<<p.m_transmission<<"\n";
 	COUT << "\tType: " << p.m_type << "\n\tEngine type: " << p.m_engineType << "\n\tHorsepower: " << p.m_bhp << "\n";
 	COUT << "\tDoors: " << p.m_numberDoors << "\n\tSeats: " << p.m_numberSeats << "\n\tConsumption: " << p.m_consumption << "\n";
-	COUT << "\tAvailability: " << p.m_availability << "\n\tPrice per day: " << p.m_pricePerDay << "\n\tDeposit: " << p.m_advancePayment << "\n";
+	if(p.m_availability==true)
+		COUT << "\tAvailability: " << "yes";
+	else
+		COUT << "\tAvailability: " << "no";
+	COUT<< "\n\tPrice per day: " << p.m_pricePerDay << "\n\tDeposit: " << p.m_advancePayment << "\n";
+	
+	p.GetCarReview().DisplayReviewDetails();
 	return COUT;
 }

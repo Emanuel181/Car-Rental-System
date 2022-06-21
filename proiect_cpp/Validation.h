@@ -140,3 +140,13 @@ int CreateNumber(char* p)
 	}
 	return nr;
 }
+
+bool containsOnlyDigits(std::string word)
+{
+	for (int i = 0; i < word.length(); i++)
+	{
+		if (word[i] < '0' || word[i]>'9')
+			return false;
+	}
+	return true;
+}

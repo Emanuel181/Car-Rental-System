@@ -22,7 +22,7 @@ void Registrate();
 
 //Client stuff
 void ClientOptions(SystemClass,std::vector<std::string>);
-void AccountValidation(SystemClass,std::vector<std::string>,std::string&);
+void AccountValidation(SystemClass,std::vector<std::string>,Customer&,std::string&);
 void RentalPeriod(Customer);
 void ReadCustomerPassword(std::string&);
 void ReadRentalDetails(std::string&, std::string&,std::string&);
@@ -45,7 +45,7 @@ void CreateAnAccount(SystemClass);
 
 
 //Rental process
-void RentalProcess(SystemClass, std::string);
+void RentalProcess(SystemClass, Customer,std::string);
 
 
 //Checking
@@ -54,7 +54,14 @@ bool InputValid(std::string);
 bool isChar(const char);
 bool isDigit(const char);
 bool FirmExists(std::vector<std::string>, std::string);
+bool containsOnlyDigits(std::string);
 
 
 //Convert
 int CreateNumber(char*);
+
+
+//Drop rented cars
+void ViewRentedCars(SystemClass,Customer,std::vector<std::string>);
+void DropCar(Customer);
+void ViewCars(Customer);

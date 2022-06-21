@@ -1,3 +1,0 @@
-Gica;Popescu;pop@yahoo.com;0733123456;5020412080044;QA;456809;romania;cluj_napoca;567799;bulevardul_grivitei;45;12;4;2003;12;5;2013;password
-Gica;Popescu;pop@yahoo.com;0733123456;5020412080044;QA;456809;romania;cluj_napoca;567799;bulevardul_grivitei;45;12;4;2003;12;5;2013;password
-Gica;Popescu;pop@yahoo.com;0733123456;5020412080044;QA;456809;romania;cluj_napoca;567799;bulevardul_grivitei;45;12;4;2003;12;5;2013;password

@@ -52,13 +52,11 @@ void utility_loadingScreen()
 
 void readDataFromFile(SystemClass& mainOBJ,std::vector<std::string>& branchesList)
 {
-    std::ifstream fileAccounts("Accounts.txt");
-    std::ifstream fileCars("Cars.txt");
+    //std::ifstream fileAccounts("Accounts.txt");
+    //std::ifstream fileCars("Cars.txt");
     std::ifstream fileBranches("Branches.txt");
 
     char* line = new char[500];
-    std::vector<Customer>arrCustomers;
-    std::vector<Car>arrCars;
     std::vector<CompanyBranches>arrBranches;
     std::string firstname = "", lastname = "", email = "", phonenumber = "", CNP = "", idSeries = "", idNumber = "", password = "";
     std::string country = "", city = "", streetNumber = "", postalCode = "", streetName = "";
@@ -214,6 +212,7 @@ void readDataFromFile(SystemClass& mainOBJ,std::vector<std::string>& branchesLis
         }
 
         std::ifstream fileCars(companyName+"cars.txt");
+        std::vector<Car>arrCars;
         line[0] = 0;
         while (fileCars >> line)
         {
@@ -252,9 +251,9 @@ void readDataFromFile(SystemClass& mainOBJ,std::vector<std::string>& branchesLis
                     break;
                 case 9:
                     if (p[0] == '0')
-                        availability = true;
-                    else
                         availability = false;
+                    else
+                        availability = true;
                     break;
                 case 10:
                     pricePerDay = CreateNumber(p);
