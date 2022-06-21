@@ -93,42 +93,28 @@ bool RentalMinuteValidation(std::string input)
 }
 
 
-bool AppearOnce(std::string name,std::string email,int value)
+bool AppearOnce(std::string word,SystemClass mainOBJ,int value)
 {
-	std::ifstream fin("Accounts.txt");
-	char* line = new char[500];
-	std::string emailAddress="", firstName="";
-	bool valid = false;
-	while (fin >> line)
+	std::vector<std::vector<CompanyBranches>>arr = mainOBJ.GetCompanyBranches();
+	for (int i = 0; i < arr.size(); i++)
 	{
-		char* p = strtok(line, ";");
-		int count = 0;
-		emailAddress = "";
-		while (p)
+		for (int j = 0; j < arr[i].size(); j++)
 		{
-			if (count == 0)
+			std::vector<Customer>arrCustomers = arr[i][j].GetBranchCustomers();
+			for (int k = 0; k < arrCustomers.size(); k++)
 			{
-				firstName = p;
+				std::string variable = "";
+				if (value == 1)
+					variable = arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerFirstName();
+				else
+				{
+					if(value==2)
+						variable = arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerEmail();
+				}
+				if (variable == word)
+					return false;
 			}
-			if (count == 2)
-			{
-				emailAddress = p;
-			}
-			if (firstName != "" && firstName == name && value==0)
-			{
-				delete[] line;
-				return false;
-			}
-			if (emailAddress != "" && emailAddress == email && value==2)
-			{
-				delete[] line;
-				return false;
-			}
-			count++;
-			p = strtok(NULL, ";");
 		}
-		line = new char[500];
 	}
-	delete[] line;
 	return true;
 }

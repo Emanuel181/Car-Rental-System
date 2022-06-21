@@ -10,7 +10,7 @@ void CreateAnAccount(SystemClass mainOBJ) {
 	bool valid = false;
 
 
-	ReadPersonalData(FirstName, LastName, Email, Telephone, CNP, IDSeries, IDNumber);
+	ReadPersonalData(FirstName, LastName, Email, Telephone, CNP, IDSeries, IDNumber,mainOBJ);
 	std::cout << "Please wait...";
 	Sleep(2000);
 	system("cls");

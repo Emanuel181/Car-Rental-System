@@ -171,34 +171,47 @@ void LoginIntoAccount(SystemClass mainOBJ,Customer& customerObject) {
 	std::cout << "\tPlease enter the email address:\n";
 	std::cout << "\t";
 	std::cin >> email;
+	int count = 3;
 	while (1)
 	{
-		std::cout << "\n\tPlease enter the password:\n";
-		std::cout << "\t";
-		std::cin >> password;
-		std::cout << "\t";
-
 		bool valid = false;
 
-		std::vector<std::vector<CompanyBranches>>arr = mainOBJ.GetCompanyBranches();
-		for (int i = 0; i < arr.size(); i++)
-		{
-			for (int j = 0; j < arr[i].size(); j++)
+		if (count > 0) {
+			std::cout << "\n\tPlease enter the password:\n";
+			std::cout << "\t";
+			std::cin >> password;
+			std::cout << "\t";
+		}
+		else {
+			count = 3;
+			Sleep(0.2);
+			system("cls");
+			LoginIntoAccount(mainOBJ, customerObject);
+		}
+
+		if (password != "" && email != "") {
+			std::vector<std::vector<CompanyBranches>>arr = mainOBJ.GetCompanyBranches();
+			for (int i = 0; i < arr.size(); i++)
 			{
-				std::vector<Customer>arrCustomers = arr[i][j].GetBranchCustomers();
-				for (int k = 0; k < arrCustomers.size(); k++)
+				for (int j = 0; j < arr[i].size(); j++)
 				{
-					std::string customerEmail= arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerEmail();
-					std::string customerPassword = arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerPassword();
-					if (email == customerEmail && password == customerPassword)
+					std::vector<Customer>arrCustomers = arr[i][j].GetBranchCustomers();
+					for (int k = 0; k < arrCustomers.size(); k++)
 					{
-						customerObject = arrCustomers[k];
-						valid = true;
-						std::cout << "\n\tYour credentials are correct.\n\n";
-						break;
+						std::string customerEmail = arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerEmail();
+						std::string customerPassword = arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerPassword();
+						if (email == customerEmail && password == customerPassword)
+						{
+							customerObject = arrCustomers[k];
+							valid = true;
+							std::cout << "\n\tYour credentials are correct.\n\n";
+							break;
+						}
 					}
 				}
 			}
+			if (valid == true)
+				return;
 		}
 
 		if (valid == true)
@@ -207,53 +220,11 @@ void LoginIntoAccount(SystemClass mainOBJ,Customer& customerObject) {
 		{
 			Sleep(0.2);
 			system("cls");
+			count--;
 			std::cout << "\n\tTry again.Your password is incorrect.\n";
+			password = "";
+			email = "";
 		}
-
-
-		/*std::ifstream fin("Accounts.txt");
-		char* line = new char[500];
-		customerEmailAddress = "";
-		std::string customerPassword = "";
-		bool valid = false;
-		while (fin >> line)
-		{
-			char* p = strtok(line, ";");
-			int count = 0;
-			customerEmailAddress = "";
-			customerPassword = "";
-			while (p)
-			{
-				if (count == 2)
-				{
-					customerEmailAddress = p;
-				}
-				if (count == 18)
-				{
-					customerPassword = p;
-				}
-				if (customerEmailAddress != "" && customerPassword != "") {
-					if (customerEmailAddress == email && customerPassword == password)
-					{
-						valid = true;
-						std::cout << "\n\tYour credentials are correct.\n\n";
-						break;
-					}
-				}
-				count++;
-				p = strtok(NULL, ";");
-			}
-			line = new char[500];
-		}
-		if (valid == true)
-			break;
-		else
-		{
-			delete[] line;
-			Sleep(0.2);
-			system("cls");
-			std::cout << "\n\tTry again.Your password is incorrect.\n";
-		}*/
 	}
 
 }

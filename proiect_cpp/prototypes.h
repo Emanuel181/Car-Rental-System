@@ -32,14 +32,14 @@ void DisplaySpaces(int);
 int maxim(int, int);
 void ConfirmCreateAccount(bool&);
 void ReadHomeDetails(std::string&, std::string&, std::string&, std::string&, std::string&);
-void ReadPersonalData(std::string&, std::string&, std::string&, std::string&, std::string&, std::string&, std::string&);
+void ReadPersonalData(std::string&, std::string&, std::string&, std::string&, std::string&, std::string&, std::string&, SystemClass);
 void ReadStartRentalDetails(std::string&, std::string&, std::string&, std::string&, std::string&);
 void ReadStopRentalDetails(std::string&, std::string&, std::string&, std::string&, std::string&, std::string, std::string, std::string);
 void ReadDrivingLicenseDetails(std::string&, std::string&, std::string&, std::string&, std::string&, std::string&);
 
 
 //Account stuff
-bool AppearOnce(std::string,std::string,int);
+bool AppearOnce(std::string,SystemClass,int);
 void LoginIntoAccount(SystemClass,Customer&);
 void CreateAnAccount(SystemClass);
 

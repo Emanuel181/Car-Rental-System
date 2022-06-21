@@ -1,7 +1,7 @@
 #pragma once
 
 
-void ReadPersonalData(std::string& FirstName, std::string& LastName, std::string& Email, std::string& Telephone, std::string& CNP, std::string& IDSeries, std::string& IDNumber)
+void ReadPersonalData(std::string& FirstName, std::string& LastName, std::string& Email, std::string& Telephone, std::string& CNP, std::string& IDSeries, std::string& IDNumber,SystemClass mainOBJ)
 {
 	std::cout << "\tPersonal data\n\n";
 
@@ -10,7 +10,7 @@ void ReadPersonalData(std::string& FirstName, std::string& LastName, std::string
 	{
 		std::getline(std::cin, FirstName);
 		std::cout << "\n\t";
-		if (AppearOnce(FirstName, Email,0) == true)
+		if (AppearOnce(FirstName,mainOBJ,1) == true)
 			break;
 		else
 		{
@@ -30,7 +30,7 @@ void ReadPersonalData(std::string& FirstName, std::string& LastName, std::string
 		std::cin >> Email;
 		std::cout << "\n\t";
 		std::cin.ignore();
-		if (EmailValidation(Email) == true && AppearOnce(FirstName,Email,2)==true)
+		if (EmailValidation(Email) == true && AppearOnce(Email,mainOBJ,2)==true)
 			break;
 		else
 		{
@@ -503,7 +503,7 @@ void ReadRentalDetails(std::string& startRent, std::string& stopRent,std::string
 
 	for (int i = 0; i < branchesList.size(); i++)
 	{
-		std::cout << i+1<<" - "<<branchesList[i] << "\n";
+		std::cout << "\t"<<i + 1 << " - " << branchesList[i] << "\n";
 	}
 	std::cout << "\n";
 	std::cout << "\tChoose one of the firms from the above: ";

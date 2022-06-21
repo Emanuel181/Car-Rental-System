@@ -2,4 +2,4 @@ Alexandru;Andrita;alexandru.andrita02@e-uvt.ro;0733672757;5020412080034;ZV;31632
 Emanuel;Rusu;emanuel.rusu03@e-uvt.ro;0789034567;5020412080023;AS;123456;Romania;Timisoara;500123;Grivitei;12;12;4;2002;12;4;2003;parola
 Mihai;Georgescu;mihai@gmail.com;0789231234;5020412080056;ZB;125678;romania;cluj;50204;mihail_kogalniceanu;34;1;1;2002;1;1;2012;passs
 Gica;Popescu;pop@yahoo.com;0733123456;5020412080044;QA;456809;romania;cluj_napoca;567799;bulevardul_grivitei;45;12;4;2003;12;5;2013;password
-Goergeta;Pop;gpop@yahoo.com;0978456721;5020412082211;AD;456321;Romania;Bistrita;503467;Independentei;12;9;10;2022;9;10;2032;parola
+Goergeta;Pop;gpop@yahoo.com;0978456721;5020412082211;AD;456321;Romania;Bistrita;503467;Independentei;12;9;10;2022;9;10;2032;parolaMarin;Popescu;mihai@yahoo.com;0745123009;5020234090045;AD;125621;Romania;Targoviste;567213;Independentei;90;20;5;2002;20;5;2003;password

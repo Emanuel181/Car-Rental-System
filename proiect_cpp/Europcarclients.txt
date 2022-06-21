@@ -1,0 +1,2 @@
+Alexandru;Andrita;alexandru.andrita02@e-uvt.ro;0733672757;5020412080034;ZV;316326;Romania;Brasov;500483;Dihamului;23;23;2;2000;23;2;2010;alex
+Emanuel;Rusu;emanuel.rusu03@e-uvt.ro;0789034567;5020412080023;AS;123456;Romania;Timisoara;500123;Grivitei;12;12;4;2002;12;4;2003;parola
