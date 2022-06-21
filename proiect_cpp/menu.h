@@ -35,7 +35,7 @@ void DisplayOptions()
 }
 
 
-void MainMenu(SystemClass mainOBJ)
+void MainMenu(SystemClass mainOBJ, std::vector<std::string>branchesList)
 {
 	while (1)
 	{
@@ -66,7 +66,7 @@ void MainMenu(SystemClass mainOBJ)
 					{
 						std::cout << "\n\tPrea multe incercari! Revenim la meniul principal...";
 						Sleep(2500); system("cls");
-						MainMenu(mainOBJ);
+						MainMenu(mainOBJ,branchesList);
 
 						break;
 					}
@@ -78,7 +78,7 @@ void MainMenu(SystemClass mainOBJ)
 				}
 				else if (option == 3)
 				{
-					ClientOptions(mainOBJ);
+					ClientOptions(mainOBJ,branchesList);
 					break;
 				}
 				else if (option == 4)

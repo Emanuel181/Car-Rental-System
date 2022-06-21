@@ -3,10 +3,11 @@
 
 
 void utility_loadingScreen();
+void readDataFromFile(SystemClass&, std::vector<std::string>&);
 
 
 //Menus
-void MainMenu(SystemClass);
+void MainMenu(SystemClass,std::vector<std::string>);
 
 
 //Admin stuff
@@ -20,9 +21,9 @@ void Registrate();
 
 
 //Client stuff
-void ClientOptions(SystemClass);
-void AccountValidation(SystemClass);
-void RentalPeriod(std::string);
+void ClientOptions(SystemClass,std::vector<std::string>);
+void AccountValidation(SystemClass,std::vector<std::string>);
+void RentalPeriod(Customer);
 void ReadCustomerPassword(std::string&);
 void ReadRentalDetails(std::string&, std::string&,std::string&);
 void DisplayAccountDetails(std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string);
@@ -39,7 +40,7 @@ void ReadDrivingLicenseDetails(std::string&, std::string&, std::string&, std::st
 
 //Account stuff
 bool AppearOnce(std::string,std::string,int);
-void LoginIntoAccount(std::string&,SystemClass);
+void LoginIntoAccount(SystemClass,Customer&);
 void CreateAnAccount(SystemClass);
 
 

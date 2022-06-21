@@ -1,0 +1,2 @@
+Gica;Popescu;pop@yahoo.com;0733123456;5020412080044;QA;456809;romania;cluj_napoca;567799;bulevardul_grivitei;45;12;4;2003;12;5;2013;password
+Mihai;Georgescu;mihai@gmail.com;0789231234;5020412080056;ZB;125678;romania;cluj;50204;mihail_kogalniceanu;34;1;1;2002;1;1;2012;passs

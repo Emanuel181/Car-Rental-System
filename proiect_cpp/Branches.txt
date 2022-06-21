@@ -1,3 +1,3 @@
-Firma_1;Romania;Cluj;very_good;OBS_none;20;9.5;Independentei;22;345654;0765676567;firma1@gmail.com;Alexandru
-Firma_2;Romania;Brasov;good;OBS_Mihai;30;8.9;Piata_Victoriei;22;349954;0765676117;firma2@gmail.com;Emanuel
-Firma_3;Romania;Timisoara;awful;OBS_George;3;5;Grivitei;22;349054;0764676117;firma3@gmail.com;George
+Sixt;Romania;Cluj;very_good;OBS_none;20;9.5;Independentei;22;345654;0765676567;firma1@gmail.com;Alexandru
+Europcar;Romania;Brasov;good;OBS_Mihai;30;8.9;Piata_Victoriei;22;349954;0765676117;firma2@gmail.com;Emanuel
+Firefly;Romania;Timisoara;awful;OBS_George;3;5;Grivitei;22;349054;0764676117;firma3@gmail.com;George

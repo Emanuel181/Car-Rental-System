@@ -50,7 +50,7 @@ void utility_loadingScreen()
     std::cout << "\n\n";
 }
 
-void readDataFromFile(SystemClass& mainOBJ)
+void readDataFromFile(SystemClass& mainOBJ,std::vector<std::string>& branchesList)
 {
     std::ifstream fileAccounts("Accounts.txt");
     std::ifstream fileCars("Cars.txt");
@@ -74,165 +74,6 @@ void readDataFromFile(SystemClass& mainOBJ)
     std::string companyName = "", managerName = "", observations="";
     int numberOfCars = 0;
 
-
-    while (fileAccounts >> line)
-    {
-        char* p = strtok(line, ";");
-        int nr = 0;
-        while (p)
-        {
-            switch (nr)
-            {
-            case 0:
-                personName += firstname;
-                firstname = p;
-                break;
-            case 1:
-                personName += ";" + lastname;
-                lastname = p;
-                break;
-            case 2:
-                email = p;
-                break;
-            case 3:
-                phonenumber = p;
-                break;
-            case 4:
-                CNP = p;
-                break;
-            case 5:
-                idSeries = p;
-                break;
-            case 6:
-                idNumber = p;
-                break;
-            case 7:
-                country = p;
-                break;
-            case 8:
-                city = p;
-                break;
-            case 9:
-                postalCode = p;
-                break;
-            case 10:
-                streetName = p;
-                break;
-            case 11:
-                streetNumber = p;
-                break;
-            case 12:
-                drStartDay = p;
-                break;
-            case 13:
-                drStartMonth = p;
-                break;
-            case 14:
-                drStartYear = p;
-                break;
-            case 15:
-                drEndDay = p;
-                break;
-            case 16:
-                drEndMonth = p;
-                break;
-            case 17:
-                drEndYear = p;
-                break;
-            case 18:
-                password = p;
-                break;
-            }
-            p = strtok(NULL, ";");
-            nr++;
-        }
-        IdentificationInfos identificationInfos(firstname, lastname, email, phonenumber, CNP, idSeries, idNumber, password);
-        CustomerHomeAdress customerHomeAddress(country, city, postalCode, streetName, streetNumber);
-        DrivingLicenseStartDay drivingLicenseStartDate(drStartDay, drStartMonth, drStartYear);
-        DrivingLicenseEndDay drivingLicenseEndDay(drEndDay,drEndMonth,drEndYear);
-        DrivingLicense drivingLicense(drivingLicenseStartDate, drivingLicenseEndDay, "yes");
-        RentalSchedule rentalSchedule;
-        Customer customer(identificationInfos, customerHomeAddress, drivingLicense, rentalSchedule);
-        arrCustomers.push_back(customer);
-
-    }
-
-    line[0] = 0;
-    while (fileCars >> line)
-    {
-        char* p = strtok(line, ";");
-        int nr = 0;
-        while (p)
-        {
-            switch (nr)
-            {
-            case 0:
-                make = p;
-                break;
-            case 1:
-                color = p;
-                break;
-            case 2:
-                transmission = p;
-                break;
-            case 3:
-                type = p;
-                break;
-            case 4:
-                bhp = (int)p;
-                break;
-            case 5:
-                numberDoors = (int)p;
-                break;
-            case 6:
-                numberSeats = (int)p;
-                break;
-            case 7:
-                consumption = std::stod(p);
-                break;
-            case 8:
-                availability = (bool)p;
-                break;
-            case 9:
-                pricePerDay = (int)p;
-                break;
-            case 10:
-                deposit = (int)p;
-                break;
-            case 11:
-                advancePayment = (int)p;
-                break;
-            case 12:
-                value = std::stod(p);
-                break;
-            case 13:
-                cleanliness = std::stod(p);
-                break;
-            case 14:
-                comfort = std::stod(p);
-                break;
-            case 15:
-                condition = std::stod(p);
-                break;
-            case 16:
-                overallMark = std::stod(p);
-                break;
-            case 17:
-                overallMark = std::stod(p);
-                break;
-            case 18:
-                review = p;
-                break;
-            }
-            p = strtok(NULL, ";");
-            nr++;
-        }
-        CarReview carReview(value, cleanliness, comfort, condition, overallMark, review);
-        Car car(make, color, transmission, type, bhp, engineType, numberDoors, numberSeats, consumption, availability, pricePerDay, deposit, advancePayment, carReview);
-        arrCars.push_back(car);
-    }
-
-    line[0] = 0;
     while (fileBranches >> line)
     {
         char* p = strtok(line, ";");
@@ -285,12 +126,175 @@ void readDataFromFile(SystemClass& mainOBJ)
             p = strtok(NULL, ";");
         }
         CompanyBranches branch(companyName, country, city, review, observations, numberOfCars, overallMark, streetName, streetNumber, postalCode, phonenumber, email, managerName);
+        branchesList.push_back(companyName);
+        
+        std::ifstream fileCustomers(companyName + "clients.txt");
+        std::vector<Customer>arrCustomers;
+        line[0] = 0;
+        while (fileCustomers >>line)
+        {
+            char* p = strtok(line, ";");
+            int nr = 0;
+            while (p)
+            {
+                switch (nr)
+                {
+                case 0:
+                    personName += firstname;
+                    firstname = p;
+                    break;
+                case 1:
+                    personName += ";" + lastname;
+                    lastname = p;
+                    break;
+                case 2:
+                    email = p;
+                    break;
+                case 3:
+                    phonenumber = p;
+                    break;
+                case 4:
+                    CNP = p;
+                    break;
+                case 5:
+                    idSeries = p;
+                    break;
+                case 6:
+                    idNumber = p;
+                    break;
+                case 7:
+                    country = p;
+                    break;
+                case 8:
+                    city = p;
+                    break;
+                case 9:
+                    postalCode = p;
+                    break;
+                case 10:
+                    streetName = p;
+                    break;
+                case 11:
+                    streetNumber = p;
+                    break;
+                case 12:
+                    drStartDay = p;
+                    break;
+                case 13:
+                    drStartMonth = p;
+                    break;
+                case 14:
+                    drStartYear = p;
+                    break;
+                case 15:
+                    drEndDay = p;
+                    break;
+                case 16:
+                    drEndMonth = p;
+                    break;
+                case 17:
+                    drEndYear = p;
+                    break;
+                case 18:
+                    password = p;
+                    break;
+                }
+                p = strtok(NULL, ";");
+                nr++;
+            }
+            IdentificationInfos identificationInfos(firstname, lastname, email, phonenumber, CNP, idSeries, idNumber, password);
+            CustomerHomeAdress customerHomeAddress(country, city, postalCode, streetName, streetNumber);
+            DrivingLicenseStartDay drivingLicenseStartDate(drStartDay, drStartMonth, drStartYear);
+            DrivingLicenseEndDay drivingLicenseEndDay(drEndDay, drEndMonth, drEndYear);
+            DrivingLicense drivingLicense(drivingLicenseStartDate, drivingLicenseEndDay, "yes");
+            RentalSchedule rentalSchedule;
+            Customer customer(identificationInfos, customerHomeAddress, drivingLicense, rentalSchedule);
+
+            arrCustomers.push_back(customer);
+        }
+
+        std::ifstream fileCars(companyName+"cars.txt");
+        line[0] = 0;
+        while (fileCars >> line)
+        {
+            char* p = strtok(line, ";");
+            int nr = 0;
+            while (p)
+            {
+                switch (nr)
+                {
+                case 0:
+                    make = p;
+                    break;
+                case 1:
+                    color = p;
+                    break;
+                case 2:
+                    transmission = p;
+                    break;
+                case 3:
+                    type = p;
+                    break;
+                case 4:
+                    bhp = (int)p;
+                    break;
+                case 5:
+                    numberDoors = (int)p;
+                    break;
+                case 6:
+                    numberSeats = (int)p;
+                    break;
+                case 7:
+                    consumption = std::stod(p);
+                    break;
+                case 8:
+                    availability = (bool)p;
+                    break;
+                case 9:
+                    pricePerDay = (int)p;
+                    break;
+                case 10:
+                    deposit = (int)p;
+                    break;
+                case 11:
+                    advancePayment = (int)p;
+                    break;
+                case 12:
+                    value = std::stod(p);
+                    break;
+                case 13:
+                    cleanliness = std::stod(p);
+                    break;
+                case 14:
+                    comfort = std::stod(p);
+                    break;
+                case 15:
+                    condition = std::stod(p);
+                    break;
+                case 16:
+                    overallMark = std::stod(p);
+                    break;
+                case 17:
+                    overallMark = std::stod(p);
+                    break;
+                case 18:
+                    review = p;
+                    break;
+                }
+                p = strtok(NULL, ";");
+                nr++;
+            }
+            CarReview carReview(value, cleanliness, comfort, condition, overallMark, review);
+            Car car(make, color, transmission, type, bhp, engineType, numberDoors, numberSeats, consumption, availability, pricePerDay, deposit, advancePayment, carReview);
+            arrCars.push_back(car);
+        }
+
         branch.setCarList(arrCars);
         branch.setCustomerList(arrCustomers);
         arrBranches.push_back(branch);
     }
     SystemClass object("",arrBranches);
-    SystemClass::SetNameOfHeadCompany("Firma principala 1");
+    SystemClass::SetNameOfHeadCompany("Car rental system");
     mainOBJ = object;
 
     delete[] line;
@@ -302,13 +306,14 @@ int main()
     //utility_loadingScreen();
     //system("cls");
 
+    std::vector<std::string>branchesList;
     SystemClass mainOBJ;
-    SystemClass::SetNameOfHeadCompany("Firma principala 1");
+    SystemClass::SetNameOfHeadCompany("Car rental system");
     //SystemClass mainOBJ(SystemClass::GetNameOfHeadCompany(), arrBranches);
 
-    readDataFromFile(mainOBJ);
+    readDataFromFile(mainOBJ,branchesList);
 
-    MainMenu(mainOBJ);
+    MainMenu(mainOBJ,branchesList);
 
     return 0;
 }
