@@ -61,24 +61,24 @@ void MainMenu(SystemClass mainOBJ, std::vector<std::string>branchesList)
 						++cnt;
 					}
 
-					if(cnt < 3) AdminOptions(mainOBJ);
+					if (cnt < 3) AdminOptions(mainOBJ);
 					else
 					{
 						std::cout << "\n\tPrea multe incercari! Revenim la meniul principal...";
 						Sleep(2500); system("cls");
-						MainMenu(mainOBJ,branchesList);
+						MainMenu(mainOBJ, branchesList);
 
 						break;
 					}
 				}
 				else if (option == 2)
 				{
-					FirmRegistration(mainOBJ);
+					FirmRegistration(mainOBJ, branchesList);
 					break;
 				}
 				else if (option == 3)
 				{
-					ClientOptions(mainOBJ,branchesList);
+					ClientOptions(mainOBJ, branchesList);
 					break;
 				}
 				else if (option == 4)
