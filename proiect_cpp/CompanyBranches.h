@@ -35,6 +35,7 @@ public:
     ContactClass GetContactClass() const;
     void setCarList(std::vector<Car>);
     void setCustomerList(std::vector<Customer>);
+    void SetOBS(std::string);
     friend std::ostream& operator << (std::ostream&, const CompanyBranches&);
 };
 

@@ -6,14 +6,14 @@
 #include <fstream>;
 #include <vector>
 #include <iterator>
+#include <windows.h>
 
 
 void ViewCompanies(SystemClass mainOBJ)
 {
-	int i = 0;
 	for (const auto& company : mainOBJ.GetCompanyBranches())
 	{
-		std::cout << company[i++].GetBranchName() << '\n';
+		for (const auto& i : company) std::cout << i.GetBranchName() << ' ' << i.GetAdministratorOBS() << '\n';
 	}
 	system("pause");
 }
@@ -24,7 +24,8 @@ void DisplayAdminOptions()
 	std::cout << "\t[1] View registered companies\n";
 	std::cout << "\t[2] Change password\n";
 	std::cout << "\t[3] Delete a branch\n";
-	std::cout << "\t[4] Go to main page\n";
+	std::cout << "\t[4] Add observations\n";
+	std::cout << "\t[5] Go to main page\n";
 }
 
 
@@ -102,6 +103,37 @@ void ChangePassword()
 }
 
 
+void AddObservaions(SystemClass mainOBJ)
+{
+	std::string numeFirma;
+	std::cout << "Numele firmei la care adaugati observatia: "; getline(std::cin, numeFirma);
+
+	bool ok = 0;
+	for (auto it : mainOBJ.GetCompanyBranches())
+	{
+
+		for (auto company : it)
+		{
+			if (company.GetBranchName() == numeFirma)
+			{
+				std::string OBS; 
+				std::cout << "Scrieti observatia: ";  getline(std::cin, OBS);
+				company.SetOBS(OBS);
+				ok = 1;
+				break;
+			}
+		}
+		if (ok) break;
+	}
+
+	if (!ok)
+	{
+		std::cout << "Nu s-a gasit nicio firma cu acel nume\n";
+		Sleep(1000);
+	}
+}
+
+
 void AdminOptions(SystemClass mainOBJ)
 {
 	while (1)
@@ -137,6 +169,11 @@ void AdminOptions(SystemClass mainOBJ)
 				}
 
 				else if (option == 4)
+				{
+					Sleep(0.016); system("cls");
+					AddObservaions(mainOBJ);
+				}
+				else if (option == 5)
 				{
 					Sleep(0.016); system("cls");
 					MainMenu(mainOBJ);
