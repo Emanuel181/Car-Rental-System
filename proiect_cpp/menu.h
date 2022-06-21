@@ -73,12 +73,12 @@ void MainMenu(SystemClass mainOBJ, std::vector<std::string>branchesList)
 				}
 				else if (option == 2)
 				{
-					FirmRegistration(mainOBJ, branchesList);
+					FirmRegistration(mainOBJ,branchesList);
 					break;
 				}
 				else if (option == 3)
 				{
-					ClientOptions(mainOBJ, branchesList);
+					ClientOptions(mainOBJ,branchesList);
 					break;
 				}
 				else if (option == 4)
