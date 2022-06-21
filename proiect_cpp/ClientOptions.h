@@ -53,7 +53,7 @@ void ConfirmCreateAccount(bool& valid)
 }
 
 
-void ClientOptions(SystemClass mainOBJ)
+void ClientOptions(SystemClass mainOBJ,std::vector<std::string>branchesList)
 {
 	Sleep(0.016);
 	system("cls");
@@ -75,14 +75,14 @@ void ClientOptions(SystemClass mainOBJ)
 				{
 					Sleep(0.016);
 					system("cls");
-					AccountValidation(mainOBJ);
+					AccountValidation(mainOBJ,branchesList);
 					break;
 				}
 				if (option == 2)
 				{
 					Sleep(0.016);
 					system("cls");
-					MainMenu(mainOBJ);
+					MainMenu(mainOBJ,branchesList);
 					break;
 				}
 			}
@@ -101,7 +101,7 @@ void ClientOptions(SystemClass mainOBJ)
 }
 
 
-void AccountValidation(SystemClass mainOBJ) {
+void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList) {
 	Sleep(0.016);
 	system("cls");
 	std::cout << "\t[1] Log in\n";
@@ -122,13 +122,13 @@ void AccountValidation(SystemClass mainOBJ) {
 				{
 					Sleep(0.2);
 					system("cls");
-					std::string customerEmailAddress = "";
-					LoginIntoAccount(customerEmailAddress,mainOBJ);
+					Customer customerObject;
+					LoginIntoAccount(mainOBJ,customerObject);
 					std::cout << "\n\tRedirecting to rental page...";
 					Sleep(2000);
 					system("cls");
 					std::cin.ignore();
-					RentalPeriod(customerEmailAddress);
+					RentalPeriod(customerObject,branchesList);
 					break; 
 				}
 				if (option == 2)
@@ -141,13 +141,13 @@ void AccountValidation(SystemClass mainOBJ) {
 					std::cout << "\n\tRedirecting to login page...";
 					Sleep(2000);
 					system("cls");
-					std::string customerEmailAddress = "";
-					LoginIntoAccount(customerEmailAddress,mainOBJ);
+					Customer customerObject;
+					LoginIntoAccount(mainOBJ,customerObject);
 					std::cout << "\n\tRedirecting to rental page...";
 					Sleep(2000);
 					system("cls");
 					std::cin.ignore();
-					RentalPeriod(customerEmailAddress);
+					RentalPeriod(customerObject,branchesList);
 					break;
 				}
 			}
@@ -166,7 +166,7 @@ void AccountValidation(SystemClass mainOBJ) {
 }
 
 
-void LoginIntoAccount(std::string& customerEmailAddress,SystemClass mainOBJ) {
+void LoginIntoAccount(SystemClass mainOBJ,Customer& customerObject) {
 	std::string email = "", password = "";
 	std::cout << "\tPlease enter the email address:\n";
 	std::cout << "\t";
@@ -177,7 +177,41 @@ void LoginIntoAccount(std::string& customerEmailAddress,SystemClass mainOBJ) {
 		std::cout << "\t";
 		std::cin >> password;
 		std::cout << "\t";
-		std::ifstream fin("Accounts.txt");
+
+		bool valid = false;
+
+		std::vector<std::vector<CompanyBranches>>arr = mainOBJ.GetCompanyBranches();
+		for (int i = 0; i < arr.size(); i++)
+		{
+			for (int j = 0; j < arr[i].size(); j++)
+			{
+				std::vector<Customer>arrCustomers = arr[i][j].GetBranchCustomers();
+				for (int k = 0; k < arrCustomers.size(); k++)
+				{
+					std::string customerEmail= arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerEmail();
+					std::string customerPassword = arrCustomers[k].GetCustomerIdentificationInfos().GetCustomerPassword();
+					if (email == customerEmail && password == customerPassword)
+					{
+						customerObject = arrCustomers[k];
+						valid = true;
+						std::cout << "\n\tYour credentials are correct.\n\n";
+						break;
+					}
+				}
+			}
+		}
+
+		if (valid == true)
+			break;
+		else 
+		{
+			Sleep(0.2);
+			system("cls");
+			std::cout << "\n\tTry again.Your password is incorrect.\n";
+		}
+
+
+		/*std::ifstream fin("Accounts.txt");
 		char* line = new char[500];
 		customerEmailAddress = "";
 		std::string customerPassword = "";
@@ -219,7 +253,7 @@ void LoginIntoAccount(std::string& customerEmailAddress,SystemClass mainOBJ) {
 			Sleep(0.2);
 			system("cls");
 			std::cout << "\n\tTry again.Your password is incorrect.\n";
-		}
+		}*/
 	}
 
 }

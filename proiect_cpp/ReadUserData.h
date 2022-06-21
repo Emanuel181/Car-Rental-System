@@ -497,11 +497,16 @@ void ReadHomeDetails(std::string& customerCountry, std::string& customerCity, st
 }
 
 
-void ReadRentalDetails(std::string& startRent, std::string& stopRent,std::string& companyName)
+void ReadRentalDetails(std::string& startRent, std::string& stopRent,std::string& companyName,std::vector<std::string>branchesList)
 {
 	std::cout << "\tRental details\n\n";
 
-	std::cout << "\tIntroduce the name of the branch: ";
+	for (int i = 0; i < branchesList.size(); i++)
+	{
+		std::cout << i+1<<" - "<<branchesList[i] << "\n";
+	}
+	std::cout << "\n";
+	std::cout << "\tChoose one of the firms from the above: ";
 	std::getline(std::cin, companyName);
 	std::cout << "\n";
 
@@ -515,24 +520,34 @@ void ReadRentalDetails(std::string& startRent, std::string& stopRent,std::string
 }
 
 
-void RentalPeriod(std::string customerEmailAddress)
+void RentalPeriod(Customer customerObject,std::vector<std::string>branchesList)
 {
 	std::string StartDay, StartMonth, StartYear, StartHour, StartMinute;
 	std::string EndDay, EndMonth, EndYear, EndHour, EndMinute;
 	std::string startRent, stopRent, companyName;
 
-	ReadRentalDetails(startRent,stopRent,companyName);
+	ReadRentalDetails(startRent,stopRent,companyName,branchesList);
 	ReadStartRentalDetails(StartDay, StartMonth, StartYear, StartHour, StartMinute);
 	ReadStopRentalDetails(EndDay, EndMonth, EndYear, EndHour, EndMinute, StartDay, StartMonth, StartYear);
 	
 	std::string clientDetails;
+	std::string clientData;
+	IdentificationInfos id = customerObject.GetCustomerIdentificationInfos();
+	CustomerHomeAdress homeAd = customerObject.GetCustomerHomeAdress();
+	DrivingLicense driving = customerObject.GetCustomerDrivingLicense();
+
+	clientData = id.GetCustomerFirstName() + ";" + id.GetCustomerLastName() + ";" + id.GetCustomerEmail() +
+		";" + id.GetCustomerTelephone() + ";" + id.GetCustomerCNP() + ";" + id.GetCustomerIDSeries() + ";" + id.GetCustomerIDCardNumber() + ";"
+		+ homeAd.GetCustomerCountry() + ";" + homeAd.GetCustomerCity() + ";" + homeAd.GetCustomerPostalCode() + ";" + homeAd.GetCustomerStreet() + ";" +
+		homeAd.GetCustomerStreetNumber() + ";" + driving.GetDrivingLicenseStartDay().GetStartDay()+ ";" + driving.GetDrivingLicenseStartDay().GetStartMonth()+ ";" + driving.GetDrivingLicenseStartDay().GetStartYear()+
+		";" + driving.GetDrivingLicenseEndDay().GetEndDay()+ ";" + driving.GetDrivingLicenseEndDay().GetEndMonth()+ ";" + driving.GetDrivingLicenseEndDay().GetEndYear()+ ";" + id.GetCustomerPassword();
 
 	std::ofstream fout;
 	fout.open(companyName + ".txt", std::ios::app);
-	fout << customerEmailAddress<<"\n";
+	fout << clientData<<"\n";
 	fout.close();
 
-	clientDetails += customerEmailAddress + ";" + startRent + ";" + stopRent + ";";
+	clientDetails += id.GetCustomerEmail() + ";" + startRent + ";" + stopRent + ";";
 	clientDetails += StartDay + ";" + StartMonth + ";" + StartYear + ";" + StartHour + ";" + StartMinute + ";";
 	clientDetails += EndDay + ";" + EndMonth + ";" + EndYear + ";" + EndHour + ";" + EndMinute +";" +companyName;
 
