@@ -10,7 +10,7 @@ bool EnterPassword()
 {
 	std::ifstream fin("admin.txt");
 	Sleep(0.16); system("cls");
-	std::cout << "\tIntroduceti parola de admin: ";
+	std::cout << "\tEnter admin password: ";
 	std::string password; std::cin >> password;
 	std::string passwordFromDb; fin >> passwordFromDb;
 
@@ -57,7 +57,7 @@ void MainMenu(SystemClass& mainOBJ, std::vector<std::string>& branchesList)
 					{
 						int rez = EnterPassword();
 						if (rez == 1) break;
-						std::cout << "\tParola gresita, mai aveti " << 3 - cnt - 1 << " incercari. \n\tReinitiam logarea ";
+						std::cout << "\tWrong password, you have" << 3 - cnt - 1 << " left tries. \n\tReinitiate procces ";
 						Sleep(2000);
 						++cnt;
 					}
@@ -65,7 +65,7 @@ void MainMenu(SystemClass& mainOBJ, std::vector<std::string>& branchesList)
 					if(cnt < 3) AdminOptions(mainOBJ,branchesList);
 					else
 					{
-						std::cout << "\n\tPrea multe incercari! Revenim la meniul principal...";
+						std::cout << "\n\tToo many tries! We take you to main menu...";
 						Sleep(2500); system("cls");
 						MainMenu(mainOBJ,branchesList);
 

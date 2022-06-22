@@ -71,7 +71,7 @@ void SystemClass::Registrate(std::vector<std::string>& branchesList)
 	double mark = 0.0;
 
 
-	std::cout << "Enter firm name: "; getline(std::cin, firmName); std::cout << "\n\t";
+	std::cout << "\tEnter firm name: "; getline(std::cin, firmName); std::cout << "\n\t";
 	std::cout << "\n\tEnter country: "; getline(std::cin, country); std::cout << "\n\t";
 	std::cout << "\n\tEnter city: "; getline(std::cin, city); std::cout << "\n\t";
 	std::cout << "\n\tEnter number of cars: "; std::cin >> numberOfCars; std::cout << "\n\t"; std::cin.ignore();
@@ -86,7 +86,7 @@ void SystemClass::Registrate(std::vector<std::string>& branchesList)
 
 	branchesList.push_back(firmName);
 
-	std::cout << "Write specifications for your cars:\n";
+	std::cout << "Write specifications for your cars:\n\n";
 
 	std::string brand = "", color = "", transmission = "", type = "", engineType = "", reviewCar = "";
 
@@ -98,7 +98,7 @@ void SystemClass::Registrate(std::vector<std::string>& branchesList)
 
 	while (cnt)
 	{
-		std::cout << "Brand: "; std::cin >> brand;
+		std::cout << "\tBrand: "; std::cin >> brand;
 		std::cout << "\n\tColor: "; std::cin >> color;
 		std::cout << "\n\tTransmission: "; std::cin >> transmission;
 		std::cout << "\n\tType: "; std::cin >> type;
@@ -115,6 +115,7 @@ void SystemClass::Registrate(std::vector<std::string>& branchesList)
 		std::cout << "\n\tComfort: "; std::cin >> comfort; std::cin.ignore();
 		std::cout << "\n\tOverall Mark: "; std::cin >> overallMark; std::cin.ignore();
 		--cnt;
+		Sleep(0.2); system("cls");
 	}
 
 	std::cout << "\n\tCompany added!";
