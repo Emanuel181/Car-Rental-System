@@ -1,5 +1,6 @@
 #pragma once
 #include "CompanyBranches.h"
+#include "Windows.h"
 
 
 class SystemClass
@@ -14,6 +15,9 @@ public:
     SystemClass();
     SystemClass(const static std::string, std:: vector <CompanyBranches>);
     static void SetNameOfHeadCompany(const std::string);
+	void SetAdministratorOBS();
+    void Registrate(std::vector<std::string>& branchesList);
+    void DeleteBranch();
 };
 
 

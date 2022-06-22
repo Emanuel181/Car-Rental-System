@@ -98,3 +98,4 @@ void CompanyBranches::setCustomerList(std::vector<Customer>arrCustomers)
 
 void CompanyBranches::SetOBS(std::string OBS) { m_administratorOBS = OBS; }
 
+

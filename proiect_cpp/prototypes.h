@@ -7,17 +7,19 @@ void readDataFromFile(SystemClass&, std::vector<std::string>&);
 
 
 //Menus
-void MainMenu(SystemClass,std::vector<std::string>);
+//void MainMenu(SystemClass&,std::vector<std::string>);
+void MainMenu(SystemClass&, std::vector<std::string>&);
+//void MainMenu(SystemClass, std::vector<std::string>);
 
 
 //Admin stuff
-void AdminOptions(SystemClass,std::vector<std::string>);
+void AdminOptions(SystemClass&,std::vector<std::string>&);
 void ViewCompanies(SystemClass);
 
 
 //Manager stuff
-void FirmRegistration(SystemClass, std::vector<std::string>);
-void Registrate();
+void FirmRegistration(SystemClass&, std::vector<std::string>&);
+void Registrate(SystemClass&, std::vector<std::string>&);
 
 
 //Client stuff

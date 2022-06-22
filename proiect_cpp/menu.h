@@ -27,6 +27,7 @@ bool EnterPassword()
 
 void DisplayOptions()
 {
+	Sleep(0.2); system("cls");
 	std::cout << "\t[1] Administrator\n";
 	std::cout << "\t[2] Company registration\n";
 	std::cout << "\t[3] Client\n";
@@ -35,7 +36,7 @@ void DisplayOptions()
 }
 
 
-void MainMenu(SystemClass mainOBJ,std::vector<std::string>branchesList)
+void MainMenu(SystemClass& mainOBJ, std::vector<std::string>& branchesList)
 {
 	while (1)
 	{

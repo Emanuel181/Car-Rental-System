@@ -1,8 +1,10 @@
 #pragma once
-
 #include <string>
+#include "CompanyBranches.h"
+#include "Prototypes.h"
+#include "SystemClass.h"
 
-void FirmRegistration(SystemClass mainOBJ,std::vector<std::string>branchesList)
+void FirmRegistration(SystemClass& mainOBJ,std::vector<std::string>& branchesList)
 {
 	Sleep(0.016);
 	system("cls");
@@ -24,7 +26,8 @@ void FirmRegistration(SystemClass mainOBJ,std::vector<std::string>branchesList)
 				{
 					Sleep(0.016);
 					system("cls");
-					Registrate();
+					mainOBJ.Registrate(branchesList);
+					MainMenu(mainOBJ, branchesList);
 					break;
 				}
 				if (option == 2)
@@ -49,6 +52,4 @@ void FirmRegistration(SystemClass mainOBJ,std::vector<std::string>branchesList)
 	}
 }
 
-void Registrate() {
 
-}
