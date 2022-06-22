@@ -137,28 +137,23 @@ void SystemClass::DeleteBranch()
 	std::cout << "\tName of company tou want to delete: ";
 	std::string numeCompanie; getline(std::cin, numeCompanie);
 
-	std::vector < std::vector <CompanyBranches> >::iterator it;
-	std::vector <CompanyBranches> ::iterator j;
-	it = this->m_companyBranches.begin();
-
 	bool ok = 0;
 	int i = 0;
 
-	/*while (it != this->m_companyBranches.end())
+	for (auto& i : m_companyBranches)
 	{
-		ok = 0;
-		j = &it[0].begin();
-		while (j != j.)
+		for (int j = 0; j < i.size(); ++j)
 		{
-			if (j->GetBranchName() == numeCompanie) { ok = 1; break; }
+			if (i[j].GetBranchName() == numeCompanie)
+			{
+				i.erase(i.begin() + j);
+				ok = 1;
+			}
 		}
+	}
 
-		if (ok == 1)this->m_companyBranches.erase(j);
-
-		++it;
-	}*/
-
-	if (ok) std::cout << "\tCompany deleted";
+	if (ok) std::cout << "\tCompany deleted\n";
 
 	else std::cout << "\tA company with this name doesn't exist";
+	system("pause");
 }
