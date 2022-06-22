@@ -425,6 +425,8 @@ void ViewCars(SystemClass mainOBJ, std::vector<std::string>branchesList)
         system("pause");
         return;
     }
+    std::cout << "\t";
+    system("pause");
 }
 
 

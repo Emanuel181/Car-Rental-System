@@ -18,9 +18,9 @@ void ReadPersonalData(std::string& FirstName, std::string& LastName, std::string
 			std::cout << "\tTry again.\n\n\t";
 		}
 	}
-	std::cout << "\n";
+	//std::cout << "\n";
 
-	std::cout << "\tLast name: ";
+	std::cout << "Last name: ";
 	std::getline(std::cin, LastName);
 	std::cout << "\n";
 
