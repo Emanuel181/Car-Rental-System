@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <fstream>
+//#include "SystemClass.h"
 
 
 bool InputValid(std::string input)
@@ -93,7 +94,7 @@ bool RentalMinuteValidation(std::string input)
 }
 
 
-bool AppearOnce(std::string word,SystemClass mainOBJ,int value)
+bool AppearOnce(std::string word, SystemClass mainOBJ,int value)
 {
 	std::vector<std::vector<CompanyBranches>>arr = mainOBJ.GetCompanyBranches();
 	for (int i = 0; i < arr.size(); i++)
@@ -146,6 +147,17 @@ bool containsOnlyDigits(std::string word)
 	for (int i = 0; i < word.length(); i++)
 	{
 		if (word[i] < '0' || word[i]>'9')
+			return false;
+	}
+	return true;
+}
+
+
+bool validWord(std::string word)
+{
+	for (int i = 0; i < word.size(); i++)
+	{
+		if (isChar(word[i]) == false)
 			return false;
 	}
 	return true;

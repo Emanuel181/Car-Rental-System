@@ -158,6 +158,9 @@
     <ClInclude Include="RentedCars.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PasteData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="proiect_cpp.rc">

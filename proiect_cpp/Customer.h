@@ -13,7 +13,7 @@ private:
     IdentificationInfos m_identificationInfos;
     CustomerHomeAdress m_customerHomeAddress;
     DrivingLicense m_customerDrivingLicense;
-    DateOfBirth m_customerDateOfBirth;
+    //DateOfBirth m_customerDateOfBirth;
     RentalSchedule m_customerRentalSchedule;
 
 public:
