@@ -157,3 +157,19 @@ void SystemClass::DeleteBranch()
 	else std::cout << "\tA company with this name doesn't exist";
 	system("pause");
 }
+
+
+void SystemClass::AddCustomerToBranch(Customer customer, std::string companyName)
+{
+	for (int i = 0; i < this->m_companyBranches.size(); i++)
+	{
+		for (int j = 0; j < this->m_companyBranches[i].size(); j++)
+		{
+			std::string name = this->m_companyBranches[i][j].GetBranchName();
+			if (name == companyName)
+			{
+				this->m_companyBranches[i][j].GetBranchCustomers().push_back(customer);
+			}
+		}
+	}
+}

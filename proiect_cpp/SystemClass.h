@@ -19,6 +19,7 @@ public:
 	void SetAdministratorOBS();
     void Registrate(std::vector<std::string>& branchesList);
     void DeleteBranch();
+    void AddCustomerToBranch(Customer , std::string );
 };
 
 

@@ -8,9 +8,7 @@ void CompleteFiles(SystemClass);
 
 
 //Menus
-//void MainMenu(SystemClass&,std::vector<std::string>);
 void MainMenu(SystemClass&, std::vector<std::string>&);
-//void MainMenu(SystemClass, std::vector<std::string>);
 
 
 //Admin stuff
@@ -25,7 +23,7 @@ void Registrate(SystemClass&, std::vector<std::string>&);
 
 //Client stuff
 void ClientOptions(SystemClass,std::vector<std::string>);
-void AccountValidation(SystemClass,std::vector<std::string>,Customer&,std::string&);
+void AccountValidation(SystemClass,std::vector<std::string>,Customer&,std::string&,bool&);
 void RentalPeriod(Customer);
 void ReadCustomerPassword(std::string&);
 void ReadRentalDetails(std::string&, std::string&,std::string&);
@@ -43,8 +41,8 @@ void ReadDrivingLicenseDetails(std::string&, std::string&, std::string&, std::st
 
 //Account stuff
 bool AppearOnce(std::string,SystemClass,int);
-void LoginIntoAccount(SystemClass,Customer&);
-void CreateAnAccount(SystemClass);
+void LoginIntoAccount(SystemClass,Customer&,Customer);
+Customer CreateAnAccount(SystemClass,bool&);
 
 
 //Rental process

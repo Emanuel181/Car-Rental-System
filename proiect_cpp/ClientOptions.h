@@ -36,7 +36,7 @@ void ConfirmCreateAccount(bool& valid)
 				if (option == 2)
 				{
 					valid = false;
-					break;
+					return;
 				}
 			}
 			else
@@ -79,8 +79,10 @@ void ClientOptions(SystemClass mainOBJ,std::vector<std::string>branchesList)
 					Sleep(0.016);
 					system("cls");
 					std::string companyName="";
-					AccountValidation(mainOBJ,branchesList, customer,companyName);
-					RentalProcess(mainOBJ, customer,companyName);
+					bool confirm = false;
+					AccountValidation(mainOBJ,branchesList, customer,companyName,confirm);
+					if(confirm==true)
+						RentalProcess(mainOBJ, customer,companyName);
 					system("cls");
 					std::cout << "\n\tRedirecting to main page...Please wait...\n";
 					Sleep(2000);
@@ -115,7 +117,10 @@ void ClientOptions(SystemClass mainOBJ,std::vector<std::string>branchesList)
 }
 
 
-void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,Customer& customer,std::string& companyName) {
+
+
+
+void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,Customer& customer,std::string& companyName,bool& confirm) {
 	Sleep(0.016);
 	system("cls");
 	std::cout << "\t[1] Log in\n";
@@ -137,8 +142,8 @@ void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,
 				{
 					Sleep(0.2);
 					system("cls");
-					//Customer customerObject;
-					LoginIntoAccount(mainOBJ,customer);
+					Customer customerObject;
+					LoginIntoAccount(mainOBJ,customer,customerObject);
 					//email = customerObject.GetCustomerIdentificationInfos().GetCustomerEmail();
 					std::cout << "\n\tRedirecting to rental page...";
 					Sleep(2000);
@@ -154,23 +159,26 @@ void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,
 				{
 					Sleep(0.2);
 					system("cls");
-					CreateAnAccount(mainOBJ);
-					Sleep(0.2);
-					system("cls");
-					std::cout << "\n\tRedirecting to login page...";
-					Sleep(2000);
-					system("cls");
-					//Customer customerObject;
-					LoginIntoAccount(mainOBJ,customer);
-					//email = customerObject.GetCustomerIdentificationInfos().GetCustomerEmail();
-					std::cout << "\n\tRedirecting to rental page...";
-					Sleep(2000);
-					system("cls");
-					std::cin.ignore();
-					RentalPeriod(customer,branchesList,companyName);
-					std::cout << "\n\tPlease wait...";
-					Sleep(2000);
-					system("cls");
+					Customer newCustomer=CreateAnAccount(mainOBJ,confirm);
+					if (confirm == true) {
+						Sleep(0.2);
+						system("cls");
+						std::cout << "\n\tRedirecting to login page...";
+						Sleep(2000);
+						system("cls");
+						//Customer customerObject;
+						LoginIntoAccount(mainOBJ, customer,newCustomer);
+						//email = customerObject.GetCustomerIdentificationInfos().GetCustomerEmail();
+						std::cout << "\n\tRedirecting to rental page...";
+						Sleep(2000);
+						system("cls");
+						std::cin.ignore();
+						RentalPeriod(customer, branchesList, companyName);
+						mainOBJ.AddCustomerToBranch(customer, companyName);
+						std::cout << "\n\tPlease wait...";
+						Sleep(2000);
+						system("cls");
+					}
 					break;
 				}
 				if (option == 3)
@@ -218,7 +226,7 @@ void Error(int& count)
 }
 
 
-void LoginIntoAccount(SystemClass mainOBJ, Customer& customerObject)
+void LoginIntoAccount(SystemClass mainOBJ, Customer& customerObject,Customer newCustomer)
 {
 	std::string email, password; email = password = "null";
 
@@ -254,12 +262,22 @@ void LoginIntoAccount(SystemClass mainOBJ, Customer& customerObject)
 						std::string customerEmail = customer.GetCustomerIdentificationInfos().GetCustomerEmail();
 						std::string customerPassword = customer.GetCustomerIdentificationInfos().GetCustomerPassword();
 
-						if (email == customerEmail && password == customerPassword)
+						if (email == customerEmail && password == customerPassword) 
 						{
 							customerObject = customer;
 							valid = true;
 							std::cout << "\n\tYour credentials are correct.\n\n";
 							return;
+						}
+						else
+						{
+							if (email == newCustomer.GetCustomerIdentificationInfos().GetCustomerEmail() && password == newCustomer.GetCustomerIdentificationInfos().GetCustomerPassword())
+							{
+								customerObject = newCustomer;
+								valid = true;
+								std::cout << "\n\tYour credentials are correct.\n\n";
+								return;
+							}
 						}
 					}
 				}
@@ -352,128 +370,128 @@ void DisplayAccountDetails(std::string FirstName, std::string  LastName, std::st
 
 	int value = strlen("DrivingStartMonth");
 	DisplayLine(maxLength+2*maxWord + 1);
-	std::cout << "\n\t| First name";
+	std::cout << "\n\t First name";
 	DisplaySpaces(value - strlen("First Name") + maxWord-1);
-	std::cout << FirstName;
+	std::cout << "| "<<FirstName;
 	DisplaySpaces(maxWord - FirstName.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2*maxWord + 1);
 
-	std::cout << "\n\t| Last name";
+	std::cout << "\n\t Last name";
 	DisplaySpaces(value - strlen("Last Name") + maxWord - 1);
-	std::cout << LastName;
+	std::cout << "| "<<LastName;
 	DisplaySpaces(maxWord - LastName.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Email";
+	std::cout << "\n\t Email";
 	DisplaySpaces(value - strlen("Email") + maxWord - 1);
-	std::cout << Email;
+	std::cout << "| "<<Email;
 	DisplaySpaces(maxWord - Email.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Telephone";
+	std::cout << "\n\t Telephone";
 	DisplaySpaces(value - strlen("Telephone") + maxWord - 1);
-	std::cout << Telephone;
+	std::cout << "| "<<Telephone;
 	DisplaySpaces(maxWord - Telephone.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| CNP";
+	std::cout << "\n\t CNP";
 	DisplaySpaces(value - strlen("CNP") + maxWord - 1);
-	std::cout << CNP;
+	std::cout << "| "<<CNP;
 	DisplaySpaces(maxWord - CNP.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| ID Series";
+	std::cout << "\n\t ID Series";
 	DisplaySpaces(value - strlen("ID Series") + maxWord - 1);
-	std::cout << IDSeries;
+	std::cout << "| "<<IDSeries;
 	DisplaySpaces(maxWord - IDSeries.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| ID Number";
+	std::cout << "\n\t ID Number";
 	DisplaySpaces(value - strlen("ID Number") + maxWord - 1);
-	std::cout << IDNumber;
+	std::cout << "| "<<IDNumber;
 	DisplaySpaces(maxWord - IDNumber.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| City";
+	std::cout << "\n\t City";
 	DisplaySpaces(value - strlen("City") + maxWord - 1);
-	std::cout << customerCity;
+	std::cout << "| "<<customerCity;
 	DisplaySpaces(maxWord - customerCity.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Country";
+	std::cout << "\n\t Country";
 	DisplaySpaces(value - strlen("Country") + maxWord - 1);
-	std::cout << customerCountry;
+	std::cout << "| "<<customerCountry;
 	DisplaySpaces(maxWord - customerCountry.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Postal code";
+	std::cout << "\n\t Postal code";
 	DisplaySpaces(value - strlen("Postal Code") + maxWord - 1);
-	std::cout << customerPostalCode;
+	std::cout << "| "<<customerPostalCode;
 	DisplaySpaces(maxWord - customerPostalCode.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Street number";
+	std::cout << "\n\t Street number";
 	DisplaySpaces(value - strlen("Street Number") + maxWord - 1);
-	std::cout << customerStreetNumber;
+	std::cout << "| "<<customerStreetNumber;
 	DisplaySpaces(maxWord - customerStreetNumber.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Driving Start Day";
+	std::cout << "\n\t Driving Start Day";
 	DisplaySpaces(value - strlen("Driving Start Day") + maxWord - 1);
-	std::cout << DrivingStartDay;
+	std::cout << "| "<<DrivingStartDay;
 	DisplaySpaces(maxWord - DrivingStartDay.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Driving Start Month";
+	std::cout << "\n\t Driving Start Month";
 	DisplaySpaces(value - strlen("Driving Start Month") + maxWord - 1);
-	std::cout << DrivingStartMonth;
+	std::cout << "| "<<DrivingStartMonth;
 	DisplaySpaces(maxWord - DrivingStartMonth.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Driving Start Year";
+	std::cout << "\n\t Driving Start Year";
 	DisplaySpaces(value - strlen("Driving Start Year") + maxWord - 1);
-	std::cout << DrivingStartYear;
+	std::cout << "| "<<DrivingStartYear;
 	DisplaySpaces(maxWord - DrivingStartYear.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Driving End Day";
+	std::cout << "\n\t Driving End Day";
 	DisplaySpaces(value - strlen("Driving End Day") + maxWord - 1);
-	std::cout << DrivingEndDay;
+	std::cout << "| "<<DrivingEndDay;
 	DisplaySpaces(maxWord - DrivingEndDay.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Driving End Month";
+	std::cout << "\n\t Driving End Month";
 	DisplaySpaces(value - strlen("Driving End Month") + maxWord - 1);
-	std::cout << DrivingEndMonth;
+	std::cout << "| "<<DrivingEndMonth;
 	DisplaySpaces(maxWord - DrivingEndMonth.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Driving End Year";
+	std::cout << "\n\t Driving End Year";
 	DisplaySpaces(value - strlen("Driving End Year") + maxWord - 1);
-	std::cout << DrivingEndYear;
+	std::cout << "| "<<DrivingEndYear;
 	DisplaySpaces(maxWord - DrivingEndYear.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);
 
-	std::cout << "\n\t| Password";
+	std::cout << "\n\t Password";
 	DisplaySpaces(value - strlen("Password") + maxWord - 1);
-	std::cout << Password;
+	std::cout << "| "<<Password;
 	DisplaySpaces(maxWord - Password.length() + 1);
 	std::cout << "\n";
 	DisplayLine(maxLength + 2 * maxWord + 1);

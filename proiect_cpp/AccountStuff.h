@@ -1,7 +1,9 @@
 #pragma once
 
 
-void CreateAnAccount(SystemClass mainOBJ) {
+Customer CreateAnAccount(SystemClass mainOBJ,bool& confirm)
+{
+
 	std::string customerCountry, customerCity, customerPostalCode, customerStreet, customerStreetNumber;
 	std::string FirstName, LastName, Email, Telephone, CNP, IDSeries, IDNumber, Mark;
 	std::string DrivingStartDay, DrivingStartMonth, DrivingStartYear, DrivingEndDay, DrivingEndMonth, DrivingEndYear;
@@ -38,10 +40,21 @@ void CreateAnAccount(SystemClass mainOBJ) {
 		customerStreetNumber,DrivingStartDay,DrivingStartMonth,DrivingStartYear,DrivingEndDay,DrivingEndMonth,DrivingEndYear,Password);
 	ConfirmCreateAccount(valid);
 	if (valid == true) {
+		confirm = true;
 		std::ofstream fileOutput("Accounts.txt", std::ios_base::app | std::ios_base::out);
 		fileOutput << personDetails << "\n";
 		fileOutput.close();
 	}
+	IdentificationInfos id(FirstName, LastName, Email, Telephone, CNP, IDSeries, IDNumber, Password);
+	CustomerHomeAdress address(customerCountry, customerCity, customerPostalCode, customerStreet, customerStreetNumber);
+	DrivingLicenseStartDay drivingLicenseStartDate(DrivingStartDay,DrivingStartMonth, DrivingStartYear);
+	DrivingLicenseEndDay drivingLicenseEndDay(DrivingEndDay,DrivingEndMonth,DrivingEndYear);
+	DrivingLicense drivingLicense(drivingLicenseStartDate, drivingLicenseEndDay, "yes");
+	RentalSchedule rentalSchedule;
+
+	Customer newCustomer(id,address, drivingLicense, rentalSchedule);
+
+	return newCustomer;
 }
 
 

@@ -1,11 +1,3 @@
 pop@yahoo.com;brasov;brasov;3;5;2022;8;00;4;5;2022;17;30;Europcar
 gpop@yahoo.com;Bistrita;Constanta;5;6;2023;14;30;6;6;2023;15;00;Sixt
-gpop@yahoo.com;brasov;brasov;2;3;2020;8;00;3;3;2021;17;00;Sixtpop@yahoo.com;brasov;brasov;2;3;2002;8;00;3;3;2002;8;00;Sixt
-pop@yahoo.com;brasov;brasov;2;3;2002;8;00;3;3;2002;8;00;Sixt
-pop@yahoo.com;a;a;2;2;2022;17;00;9;8;2023;17;00;Sixt
-pop@yahoo.com;a;a;2;2;2022;17;00;9;8;2023;17;00;Sixt
-pop@yahoo.com;a;a;2;2;2022;17;00;9;8;2023;17;00;Sixt
-pop@yahoo.com;a;a;2;2;2022;17;00;9;8;2023;17;00;Sixt
-pop@yahoo.com;a;a;2;2;2022;17;00;9;8;2023;17;00;Sixt
-pop@yahoo.com;a;a;2;2;2022;17;00;9;8;2023;17;00;Sixt
-pop@yahoo.com;a;a;2;2;2022;17;00;9;8;2023;17;00;Sixt
+gpop@yahoo.com;brasov;brasov;2;3;2020;8;00;3;3;2021;17;00;Sixt

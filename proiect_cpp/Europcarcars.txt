@@ -1,0 +1,1 @@
+Audi;Violet;Manual;Coupe;80;petrol;5;5;9.2;1;30;70;9;9;8.9;8.9;8;8.6;good
