@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <Windows.h>
 #include <algorithm>
+#include <ctime>
+#include "SystemClass.h"
 #include "Prototypes.h"
 #include "Validation.h"
 #include "Menu.h"
@@ -9,13 +11,13 @@
 #include "AdministratorOptions.h"
 #include "ClientOptions.h"
 #include "FirmRegistration.h"
-#include "SystemClass.h"
 #include "LocationAddress.h"
 #include "StartTime.h"
 #include "EndTime.h"
+#include "PasteData.h"
 
 
-void utility_loadingScreen()
+void Utility_loadingScreen()
 {
     std::cout << "\n\n\n\n\n\n\n\n";
     system("color 0A");
@@ -50,7 +52,7 @@ void utility_loadingScreen()
     std::cout << "\n\n";
 }
 
-void readDataFromFile(SystemClass& mainOBJ,std::vector<std::string>& branchesList)
+void ReadDataFromFile(SystemClass& mainOBJ,std::vector<std::string>& branchesList)
 {
     //std::ifstream fileAccounts("Accounts.txt");
     //std::ifstream fileCars("Cars.txt");
@@ -305,17 +307,20 @@ void readDataFromFile(SystemClass& mainOBJ,std::vector<std::string>& branchesLis
 
 int main()
 {
-    //utility_loadingScreen();
+    //Utility_loadingScreen();
     //system("cls");
 
+    srand(time(0));
     std::vector<std::string>branchesList;
     SystemClass mainOBJ;
     SystemClass::SetNameOfHeadCompany("Car rental system");
     //SystemClass mainOBJ(SystemClass::GetNameOfHeadCompany(), arrBranches);
 
-    readDataFromFile(mainOBJ,branchesList);
+    ReadDataFromFile(mainOBJ,branchesList);
 
     MainMenu(mainOBJ,branchesList);
+
+    CompleteFiles(mainOBJ);
 
     return 0;
 }

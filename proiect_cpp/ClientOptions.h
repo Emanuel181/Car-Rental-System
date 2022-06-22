@@ -72,7 +72,7 @@ void ClientOptions(SystemClass mainOBJ,std::vector<std::string>branchesList)
 		{
 			int option = stoi(input);
 			Customer customer;
-			if (option <= 2)
+			if (option <= 3)
 			{
 				if (option == 1)
 				{
@@ -82,8 +82,8 @@ void ClientOptions(SystemClass mainOBJ,std::vector<std::string>branchesList)
 					AccountValidation(mainOBJ,branchesList, customer,companyName);
 					RentalProcess(mainOBJ, customer,companyName);
 					system("cls");
-					Sleep(2000);
 					std::cout << "\n\tRedirecting to main page...Please wait...\n";
+					Sleep(2000);
 					MainMenu(mainOBJ, branchesList);
 					break;
 				}
@@ -120,6 +120,7 @@ void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,
 	system("cls");
 	std::cout << "\t[1] Log in\n";
 	std::cout << "\t[2] Create an account\n";
+	std::cout << "\t[3] Go to main page\n";
 	std::cout << "\tYour option:\n";
 	std::string input;
 	while (1)
@@ -130,7 +131,7 @@ void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,
 		if (InputValid(input))
 		{
 			int option = stoi(input);
-			if (option <= 2)
+			if (option <= 3)
 			{
 				if (option == 1)
 				{
@@ -170,6 +171,14 @@ void AccountValidation(SystemClass mainOBJ,std::vector<std::string>branchesList,
 					std::cout << "\n\tPlease wait...";
 					Sleep(2000);
 					system("cls");
+					break;
+				}
+				if (option == 3)
+				{
+					system("cls");
+					std::cout << "\tPlease wait...\n";
+					Sleep(1000);
+					ClientOptions(mainOBJ, branchesList);
 					break;
 				}
 			}
@@ -471,7 +480,7 @@ void DisplayAccountDetails(std::string FirstName, std::string  LastName, std::st
 }
 
 
-void RentalProcess(SystemClass mainOBJ,Customer customer,std::string companyName)
+void RentalProcess(SystemClass mainOBJ, Customer customer, std::string companyName)
 {
 	std::vector<std::vector<CompanyBranches>>arr = mainOBJ.GetCompanyBranches();
 	std::vector<Car>arrCars;
@@ -523,8 +532,9 @@ void RentalProcess(SystemClass mainOBJ,Customer customer,std::string companyName
 		}
 	}
 	option--;
+	int randomNumber = rand() % 999999 + 1; //random number between 1 and 999999
 	arrCars[option].SetCarAvailability(false);
-	std::string carDetails = customer.GetCustomerIdentificationInfos().GetCustomerFirstName() + ";" + customer.GetCustomerIdentificationInfos().GetCustomerLastName() + ";";
+	std::string carDetails = std::to_string(randomNumber) + ";" + customer.GetCustomerIdentificationInfos().GetCustomerFirstName() + ";" + customer.GetCustomerIdentificationInfos().GetCustomerLastName() + ";";
 	carDetails += companyName + ";";
 	carDetails += arrCars[option].GetCarMake() + ";" + arrCars[option].GetCarColor() + ";" + arrCars[option].GetCarTransmission() + ";" + arrCars[option].GetCarType()
 		+ ";" + arrCars[option].GetCarEngineType() + ";" + std::to_string(arrCars[option].GetCarHorsepower()) + ";" + std::to_string(arrCars[option].GetCarNumberOfDoors()) + ";" + std::to_string(arrCars[option].GetCarNumberOfSeats())

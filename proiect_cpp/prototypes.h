@@ -2,8 +2,9 @@
 #include "SystemClass.h"
 
 
-void utility_loadingScreen();
-void readDataFromFile(SystemClass&, std::vector<std::string>&);
+void Utility_loadingScreen();
+void ReadDataFromFile(SystemClass&, std::vector<std::string>&);
+void CompleteFiles(SystemClass);
 
 
 //Menus
@@ -65,5 +66,8 @@ int CreateNumber(char*);
 
 //Drop rented cars
 void ViewRentedCars(SystemClass,Customer,std::vector<std::string>);
-void DropCar(Customer);
-void ViewCars(Customer);
+void DropCar(SystemClass,std::vector<std::string>);
+void ViewCars(SystemClass,std::vector<std::string>);
+void CollectData(std::string&, std::string&, std::string&);
+void GetCarData(std::string&, std::string&, std::string&, std::string&, std::string&);
+void ChangeAvailabilityOfCar(char*, SystemClass);

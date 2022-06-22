@@ -178,6 +178,7 @@
     <ClInclude Include="IdentificationInfos.h" />
     <ClInclude Include="LocationAddress.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="PasteData.h" />
     <ClInclude Include="Prototypes.h" />
     <ClInclude Include="ReadUserData.h" />
     <ClInclude Include="RentalEndDate.h" />

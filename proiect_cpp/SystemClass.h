@@ -1,4 +1,5 @@
 #pragma once
+#include <fstream>
 #include "CompanyBranches.h"
 #include "Windows.h"
 
