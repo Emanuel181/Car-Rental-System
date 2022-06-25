@@ -13,3 +13,5 @@ The client side includes gathering of personal data (firstname, lastname, drivin
 
 
 A more in depth description regarding more functionalities for all 3 profiles will be provided soon. 
+
+https://img.shields.io/tokei/lines/github.com/badges/https://github.com/Emanuel181/Car-Rental-System
