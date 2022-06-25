@@ -20,35 +20,33 @@
 void Utility_loadingScreen()
 {
     std::cout << "\n\n\n\n\n\n\n\n";
-    system("color 0A");
+    //system("color 0A");
 
-    std::cout << "******************************************************************** CAR RENTAL SYSTEM **************************************************************************\n\n\n\n";
-    system("color 0A");
+    std::cout << "\t\t\tCAR RENTAL SYSTEM \n\n\n\n";
+    //system("color 0A");
 
     char a = 177, b = 219;
 
-    std::cout << "\n\n\n\t\t\t\t\t\t\t\t\t       Loading...\n\n";
-    std::cout << "\t\t\t\t\t";
+    std::cout << "\n\n\n\t\t\tLoading...\n\n";
+    std::cout << "\t\t\t";
 
 
-    for (int i = 0; i < 80; i++)
+    for (int i = 0; i < 60; i++)
         std::cout << a;
 
     std::cout << "\r";
-    std::cout << "\t\t\t\t\t";
+    std::cout << "\t\t\t";
 
 
-    for (int i = 0; i < 80; i++) {
+    for (int i = 0; i < 60; i++) {
         std::cout << b;
-        Sleep(170);
+        Sleep(120);
     }
 
     std::cout << "\n\n\n\n";
 
-    std::cout << "*****************************************************************************************************************************************************************\n\n\n";
-
-    std::cout << "Please wait...";
-    Sleep(7500);
+    std::cout << "\t\t\tPlease wait...";
+    Sleep(2000);
     std::cout << "\n\n";
 }
 
@@ -307,8 +305,8 @@ void ReadDataFromFile(SystemClass& mainOBJ,std::vector<std::string>& branchesLis
 
 int main()
 {
-    //Utility_loadingScreen();
-    //system("cls");
+    Utility_loadingScreen();
+    system("cls");
 
     srand(time(0));
     std::vector<std::string>branchesList;

@@ -5,3 +5,4 @@ Gica;Popescu;pop@yahoo.com;0733123456;5020412080044;QA;456809;romania;cluj_napoc
 Goergeta;Pop;gpop@yahoo.com;0978456721;5020412082211;AD;456321;Romania;Bistrita;503467;Independentei;12;9;10;2022;9;10;2032;parola
 Marin;Popescu;mihai@yahoo.com;0745123009;5020234090045;AD;125621;Romania;Targoviste;567213;Independentei;90;20;5;2002;20;5;2003;password
 Alex;Georgescu;alex@gmail.com;0733672757;5020412080011;AS;456312;Romania;Timisoara;572314;Independentei;12;2;3;2022;2;3;2032;password
+alex;george;alex@yahoo.com;0733672757;5020412080034;ZV;123456;Romania;Brasov;123456;Independentei;10;2;3;2022;2;3;2032;pass

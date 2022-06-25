@@ -22,5 +22,3 @@ public:
     void AddCustomerToBranch(Customer , std::string );
 };
 
-
-// ? std::string SystemClass::m_nameOfHeadCompany; - nu sterge
