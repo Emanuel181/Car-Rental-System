@@ -39,7 +39,6 @@ void ReadPersonalData(std::string& FirstName, std::string& LastName, std::string
 		}
 	}
 
-	//?
 	std::cout << "Telephone: ";
 	std::cin >> Telephone;
 	std::cout << "\n";
