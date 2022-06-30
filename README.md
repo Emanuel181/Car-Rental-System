@@ -1,5 +1,7 @@
 # C++ Project - Car Rental System  <img height="52" width="52" src="https://cdn-icons.flaticon.com/png/512/3393/premium/3393345.png?token=exp=1656581694~hmac=a1101edf3698d3a1846bbbad95bbe400">
 
+My colleague [@AlexandruAndrita](https://github.com/AlexandruAndrita) and I were assigned to think about a project ideea and implement it.
+
      The purpose of this project is to streamline how the car rental applications work.
 ##### **The following app has 3 main options:**<br/>
      1. Administrator option
